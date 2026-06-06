@@ -13,8 +13,19 @@ document.getElementById('recruitForm').addEventListener('submit', async function
         return;
     }
 
+    // 校验最高薪资大于最低薪资
+    const minSalary = parseInt(formData.get('min_salary'), 10);
+    const maxSalary = parseInt(formData.get('max_salary'), 10);
+
+    if (maxSalary <= minSalary) {
+        messageDiv.className = 'message error';
+        messageDiv.textContent = '最高薪资必须大于最低薪资';
+        messageDiv.style.display = 'block';
+        return;
+    }
+
     try {
-        const response = await fetch('../server/api/recruitment.php', {
+        const response = await fetch('/server/api/recruitment.php', {
             method: 'POST',
             body: formData
         });

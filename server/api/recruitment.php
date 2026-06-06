@@ -3,13 +3,15 @@ header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
-$host = '106.13.191.103';
-$user = 'jiashuai';
-$pass = 'Jiashuai@1006';
-$dbname = 'myself';
+$config = require __DIR__ . '/../config/database.php';
 
-$conn = new mysqli($host, $user, $pass, $dbname);
-$conn->set_charset('utf8mb4');
+$conn = new mysqli(
+    $config['host'],
+    $config['username'],
+    $config['password'],
+    $config['dbname']
+);
+$conn->set_charset($config['charset']);
 
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'message' => '数据库连接失败']);
@@ -49,15 +51,17 @@ $stmt->bind_param(
     $data['job_requirements']
 );
 
-if ($stmt->execute()) {
+try {
+    $stmt->execute();
     echo json_encode(['success' => true]);
-} else {
+} catch (mysqli_sql_exception $e) {
     if ($stmt->errno == 1062) {
-        echo json_encode(['success' => false, 'code' => 1062, 'message' => '您已经提交过啦，请勿重复操作']);
+        echo json_encode(['success' => false, 'message' => '您已提交过 请勿填写重复电话']);
     } else {
-        echo json_encode(['success' => false, 'message' => '预期之外的错误，请重试']);
+        echo json_encode(['success' => false, 'message' => '数据库错误：' . $e->getMessage()]);
     }
 }
+
 
 $stmt->close();
 $conn->close();
