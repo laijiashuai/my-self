@@ -31,6 +31,13 @@ $data = [
     'job_requirements'    => $_POST['job_requirements'] ?? null,
 ];
 
+if (empty($data['phone'])) {
+    echo json_encode(['success' => false, 'message' => '请填写手机号']);
+    $conn->close();
+    exit;
+}
+
+
 $stmt = $conn->prepare("
     INSERT INTO recruitment_info 
     (company_name, contact_person, phone, min_salary, max_salary, position, email, description, job_responsibilities, job_requirements) 
@@ -38,7 +45,7 @@ $stmt = $conn->prepare("
 ");
 
 $stmt->bind_param(
-    "sssiiissss",
+    "sssiisssss",
     $data['company_name'],
     $data['contact_person'],
     $data['phone'],
@@ -52,15 +59,15 @@ $stmt->bind_param(
 );
 
 try {
-	if (!$stmt->execute()) {
-    		if ($stmt->errno == 1062) {
-        		echo json_encode(['success' => false, 'message' => '您已提交过 请勿填写重复电话']);
-    		} else {
-        		echo json_encode(['success' => false, 'message' => '数据库错误：' . $stmt->error]);
-    		}
-	} else {
-    		echo json_encode(['success' => true]);
-	}
+    if (!$stmt->execute()) {
+        if ($stmt->errno == 1062) {
+            echo json_encode(['success' => false, 'message' => '您已提交过 请勿填写重复电话']);
+        } else {
+            echo json_encode(['success' => false, 'message' => '数据库错误：' . $stmt->error]);
+        }
+    } else {
+        echo json_encode(['success' => true]);
+    }
 } catch (mysqli_sql_exception $e) {
     if ($stmt->errno == 1062) {
         echo json_encode(['success' => false, 'message' => '您已提交过 请勿填写重复电话']);
