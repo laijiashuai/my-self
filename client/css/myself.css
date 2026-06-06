@@ -5,17 +5,519 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+        'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #e1f5fe 100%);
     min-height: 100vh;
+    padding: 20px;
+    color: #455a64;
 }
 
+/* ========== 头部 ========== */
 .header {
-    text-align: center;
-    padding: 60px 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 50px 20px 40px;
+    flex-wrap: wrap;
+}
+
+.avatar-wrapper {
+    width: 110px;
+    height: 154px;
+    /* 110 × 1.4 = 154，完美匹配 1500:2100 */
+    border-radius: 20px;
+    overflow: hidden;
+    border: 4px solid #42a5f5;
+    box-shadow: 0 8px 32px rgba(66, 165, 245, 0.35);
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #fff 0%, #f5f9ff 100%);
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 等比缩放，完整显示，不裁剪不拉伸 */
+    object-position: bottom center;
+    /* 头像底部对齐，顶部留白填充 */
+    display: block;
+}
+
+.header-text {
+    text-align: left;
 }
 
 .header h1 {
-    font-size: 2.5rem;
-    color: #333;
+    font-size: 2.6rem;
+    color: #1565c0;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(21, 101, 192, 0.15);
+}
+
+.header p {
+    font-size: 1.05rem;
+    color: #546e7a;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ========== 容器 ========== */
+.container {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ========== 卡片通用 ========== */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 32px 36px;
+    border-radius: 20px;
+    box-shadow:
+        0 4px 24px rgba(33, 150, 243, 0.12),
+        0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(66, 165, 245, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 12px 40px rgba(33, 150, 243, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    color: #1565c0;
+    margin-bottom: 22px;
+    font-weight: 700;
+    border-bottom: 3px solid #e3f2fd;
+    padding-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* ========== 基本信息 ========== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 24px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+    background: linear-gradient(135deg, #f8fbff 0%, #fff 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(66, 165, 245, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
+}
+
+.info-item .label {
+    font-size: 0.82rem;
+    color: #78909c;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item .value {
+    font-size: 1rem;
+    color: #37474f;
+    font-weight: 700;
+}
+
+/* ========== 高亮强调 ========== */
+.highlight {
+    color: #1e88e5;
+    font-weight: 800;
+    background: linear-gradient(transparent 55%, rgba(66, 165, 245, 0.2) 55%);
+    padding: 0 3px;
+    border-radius: 3px;
+}
+
+/* ========== 证书列表 ========== */
+.cert-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cert-list li {
+    font-size: 0.98rem;
+    color: #455a64;
+    line-height: 1.9;
+}
+
+.cert-link {
+    cursor: pointer;
+    color: #1e88e5;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.cert-link:hover {
+    color: #1565c0;
+    transform: translateX(4px);
+}
+
+/* ========== 工作经历 ========== */
+.timeline {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.timeline li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f8fbff 0%, #fff 100%);
+    border-radius: 14px;
+    border-left: 4px solid #42a5f5;
+    font-size: 0.98rem;
+    color: #455a64;
+    flex-wrap: wrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.timeline li:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(33, 150, 243, 0.12);
+}
+
+.timeline .time {
+    min-width: 170px;
+    font-weight: 700;
+    color: #1e88e5;
+    font-size: 0.92rem;
+}
+
+.timeline .company {
+    flex: 1;
+    font-weight: 700;
+    color: #1565c0;
+    font-size: 1.05rem;
+}
+
+.timeline .role {
+    color: #546e7a;
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+
+/* ========== 项目经验 ========== */
+.project-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.project-list li {
+    font-size: 0.98rem;
+    color: #455a64;
+    line-height: 1.9;
+    padding-left: 22px;
+    position: relative;
+}
+
+.project-list li::before {
+    content: "◆";
+    position: absolute;
+    left: 2px;
+    color: #42a5f5;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* ========== 工作成果 ========== */
+.result-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.result-list li {
+    font-size: 0.98rem;
+    color: #455a64;
+    line-height: 1.9;
+    padding-left: 22px;
+    position: relative;
+}
+
+.result-list li::before {
+    content: "◆";
+    position: absolute;
+    left: 2px;
+    color: #42a5f5;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* ========== 技能模块 ========== */
+.skill-block {
+    margin-bottom: 18px;
+    padding: 18px;
+    background: linear-gradient(135deg, #f8fbff 0%, #fff 100%);
+    border-radius: 14px;
+    border-left: 5px solid #42a5f5;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.skill-block:last-child {
+    margin-bottom: 0;
+}
+
+.skill-block:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(33, 150, 243, 0.12);
+}
+
+.skill-block h3 {
+    font-size: 1.05rem;
+    color: #1e88e5;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.skill-block p {
+    font-size: 0.95rem;
+    color: #546e7a;
+    line-height: 2;
+}
+
+/* ========== 个人简介 ========== */
+.card.about p {
+    font-size: 1.05rem;
+    color: #546e7a;
+    line-height: 2;
+    text-align: center;
+    font-weight: 500;
+    padding: 12px;
+    background: linear-gradient(135deg, #f8fbff 0%, #fff 100%);
+    border-radius: 12px;
+}
+
+/* ========== 返回按钮 ========== */
+/* 
+.back-home {
+    text-align: center;
+    padding: 10px 0 50px;
+}
+*/
+
+.btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #42a5f5 0%, #1565c0 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(21, 101, 192, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(21, 101, 192, 0.45);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+/* ========== 图片弹窗 Lightbox ========== */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    backdrop-filter: blur(8px);
+}
+
+.lightbox.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close:hover {
+    color: #42a5f5;
+    transform: rotate(90deg);
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 700px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .avatar-wrapper {
+        width: 100px;
+        height: 130px;
+    }
+
+    .card {
+        padding: 24px 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline li {
+        flex-wrap: wrap;
+    }
+
+    .timeline .time {
+        min-width: 100%;
+        margin-bottom: 6px;
+    }
+
+    .skill-block {
+        padding: 14px;
+    }
+
+    .lightbox-close {
+        font-size: 36px;
+        right: 20px;
+        top: 20px;
+    }
+}
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: transparent;
+    /* 去掉白色 */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    /* 改成浅色边框 */
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 100;
+}
+
+.btn-back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    color: #1a2332;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-back-home:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.btn-back-home svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-back-home:hover svg {
+    transform: translateX(-2px);
+}
+
+.container {
+    margin-top: 0;
 }
