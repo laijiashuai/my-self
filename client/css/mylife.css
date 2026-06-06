@@ -176,7 +176,3 @@ body {
 .btn-back-home:hover svg {
     transform: translateX(-2px);
 }
-
-.container {
-    margin-top: 0;
-}
