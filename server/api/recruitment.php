@@ -52,8 +52,15 @@ $stmt->bind_param(
 );
 
 try {
-    $stmt->execute();
-    echo json_encode(['success' => true]);
+	if (!$stmt->execute()) {
+    		if ($stmt->errno == 1062) {
+        		echo json_encode(['success' => false, 'message' => '您已提交过 请勿填写重复电话']);
+    		} else {
+        		echo json_encode(['success' => false, 'message' => '数据库错误：' . $stmt->error]);
+    		}
+	} else {
+    		echo json_encode(['success' => true]);
+	}
 } catch (mysqli_sql_exception $e) {
     if ($stmt->errno == 1062) {
         echo json_encode(['success' => false, 'message' => '您已提交过 请勿填写重复电话']);

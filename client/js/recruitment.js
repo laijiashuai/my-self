@@ -25,7 +25,7 @@ document.getElementById('recruitForm').addEventListener('submit', async function
     }
 
     try {
-        const response = await fetch('/server/api/recruitment.php', {
+        const response = await fetch('/api/recruitment.php', {
             method: 'POST',
             body: formData
         });
