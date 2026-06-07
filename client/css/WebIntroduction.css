@@ -123,3 +123,31 @@ body {
         font-size: 0.95rem;
     }
 }
+
+/* ===== GitHub 链接 ===== */
+.github-link {
+    text-align: center;
+    padding: 20px 20px 40px;
+    width: 100%;
+}
+
+.github-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    color: #1e88e5 !important;
+    background: rgba(66, 165, 245, 0.1);
+    border: 1px solid rgba(66, 165, 245, 0.25);
+    text-decoration: none !important;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.github-link a:hover {
+    color: #1565c0 !important;
+    background: rgba(66, 165, 245, 0.2);
+    border-color: rgba(66, 165, 245, 0.4);
+    text-decoration: none !important;
+}
