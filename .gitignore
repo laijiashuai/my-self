@@ -1,2 +1,3 @@
-server/.env
-server/vendor/
+server/config/.env
+server/vendor
+server/npm/node_modules

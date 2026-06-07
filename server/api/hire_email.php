@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // 读取 .env 文件
-$env = parse_ini_file(__DIR__ . '/../.env');
+$env = parse_ini_file(__DIR__ . '/../config/.env');
 
 $data = [
     'company_name'        => isset($_POST['company_name']) ? $_POST['company_name'] : '',
