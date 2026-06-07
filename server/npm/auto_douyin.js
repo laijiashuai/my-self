@@ -1,12 +1,20 @@
 const express = require('express');
 const puppeteer = require('puppeteer-core');
 const cors = require('cors');
+const cron = require('node-cron');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 
-//const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const CHROME_PATH = '/usr/bin/chromium-browser';
+const DATA_FILE = path.join(__dirname, 'accounts.json');
+
+const ACCOUNTS = [
+    { id: 'MS4wLjABAAAAYLVzofvsSh9Whf4VPeVXU6HB8oG1vW1hnCk7z1lJbyM', cardIndex: 0 },
+    { id: 'MS4wLjABAAAA73ORY7cD2_bw5dkwqXFxtQxbY7fuAdoYS1Palc8yX_Sh7zpJcKJ8wY904uqc0eoL', cardIndex: 1 }
+];
 
 // ✅ 全局变量，存 cookie
 let COOKIES = {
@@ -14,33 +22,24 @@ let COOKIES = {
     ssid: '1.0.0-KDM4MGY0MWE5MzA5ZWNlMWJkMDcwMzcxY2FmNTJhMDA3MDNkZmE4YTcKCRCe-ZDRBhjvMRoCbGYiIDUwYTY5M2M5ODNmMDlmZWQ5NjMzMDJkNTYxZmQzZjc1'
 };
 
-app.get('/api/douyin/:userId', async (req, res) => {
-    const { userId } = req.params;
-    const url = `https://www.douyin.com/user/${userId}`;
+// 初始化空文件
+if (!fs.existsSync(DATA_FILE)) {
+    fs.writeFileSync(DATA_FILE, JSON.stringify({}, null, 2));
+}
 
-    console.log(`📡 正在获取: ${url}`);
-
+async function fetchDouyinData(userId) {
     let browser = null;
-
     try {
         browser = await puppeteer.launch({
-            executablePath: process.env.CHROME_PATH || CHROME_PATH,
-            headless: true,
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-gpu',
-                '--disable-dev-shm-usage',
-                '--no-first-run',
-                '--no-zygote'
-            ]
+            executablePath: CHROME_PATH,
+            headless: 'new',
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
         });
 
         const page = await browser.newPage();
-	// 模拟真实请求      
-	await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36');
-
-        // ✅ 管理接口：更新 cookie（只允许内网访问）
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36');
+	
+	// ✅ 管理接口：更新 cookie（只允许内网访问）
         app.post('/api/update-cookie', (req, res) => {
             const { sessionid, ssid } = req.body;
             if (sessionid) COOKIES.sessionid = sessionid;
@@ -65,16 +64,13 @@ app.get('/api/douyin/:userId', async (req, res) => {
             domain: '.douyin.com'
         });
 
-        await page.goto(url, {
+        await page.goto(`https://www.douyin.com/user/${userId}`, {
             waitUntil: 'networkidle2',
-            timeout: 30000
+            timeout: 60000
         });
 
         await page.waitForSelector('.fVTgfEro', { timeout: 10000 });
 
-
-
-        // ✅ 提取粉丝数
         const fans = await page.evaluate(() => {
             const allDivs = document.querySelectorAll('div');
             for (let i = 0; i < allDivs.length - 1; i++) {
@@ -84,7 +80,7 @@ app.get('/api/douyin/:userId', async (req, res) => {
             }
             return '--';
         });
-        // ✅ 提取获赞数
+
         const likes = await page.evaluate(() => {
             const allDivs = document.querySelectorAll('div');
             for (let i = 0; i < allDivs.length - 1; i++) {
@@ -96,25 +92,52 @@ app.get('/api/douyin/:userId', async (req, res) => {
         });
 
         await browser.close();
-
-        console.log(`✅ 粉丝: ${fans}, 获赞: ${likes}`);
-
-        res.json({
-            success: true,
-            data: { fans, likes }
-        });
-
+        return { fans, likes };
     } catch (err) {
         console.error('❌ 获取失败:', err.message);
         if (browser) await browser.close();
-        res.status(500).json({
-            success: false,
-            error: err.message
-        });
+        return null;
     }
+}
+
+// 抓取所有账号，写入文件
+async function refreshAllData() {
+    console.log('🔄 开始刷新数据...');
+    const result = {};
+
+    for (const acc of ACCOUNTS) {
+        const data = await fetchDouyinData(acc.id);
+        if (data) {
+            result[acc.id] = {
+                fans: data.fans,
+                likes: data.likes,
+                updatedAt: new Date().toISOString()
+            };
+        }
+        // 每个账号之间等10秒，避免封
+        await new Promise(resolve => setTimeout(resolve, 10000));
+    }
+
+    fs.writeFileSync(DATA_FILE, JSON.stringify(result, null, 2));
+    console.log('✅ 数据已更新:', DATA_FILE);
+}
+
+// 定时任务：每8小时执行一次
+cron.schedule('0 */8 * * *', () => {
+    refreshAllData();
+});
+
+// 启动时立即执行一次
+refreshAllData();
+
+// 前端读取接口
+app.get('/api/douyin/accounts', (req, res) => {
+    const data = fs.readFileSync(DATA_FILE, 'utf8');
+    res.json(JSON.parse(data));
 });
 
 const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`✅ 代理运行: http://localhost:${PORT}`);
 });
+
