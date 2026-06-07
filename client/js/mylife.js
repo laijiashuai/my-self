@@ -1,6 +1,8 @@
 //const config = fetch('/server/config/node_conf.json');
 //const API_BASE = `http://${config.host}:${config.port}/api/douyin/`;
-const API_BASE = `http://localhost:3000/api/douyin/`;
+const API_HOST = '106.13.191.103';
+const API_PORT = 3000;
+const API_BASE = `http://${API_HOST}:${API_PORT}/api/douyin/`;
 
 
 const ACCOUNTS = [
