@@ -33,21 +33,25 @@ async function updateCardData(account) {
 }
 
 window.addEventListener('load', async () => {
+    // 1. 入场动画
     const cards = document.querySelectorAll('.card');
-
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
         setTimeout(() => {
-            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            //card.style.transition = 'opacity 0.5s, transform 0.5s';
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
         }, index * 150);
     });
 
-    await updateCardData(ACCOUNTS[0]);
-    await updateCardData(ACCOUNTS[1]);
+    // 2. 加载数据（等动画开始后再请求，不阻塞渲染）
+    setTimeout(async () => {
+        await updateCardData(ACCOUNTS[0]);
+        await updateCardData(ACCOUNTS[1]);
+    }, 300);
 });
+
 
 // 点击波纹效果
 document.querySelectorAll('.card').forEach(card => {
@@ -57,19 +61,5 @@ document.querySelectorAll('.card').forEach(card => {
             this.style.transform = 'scale(0.98)';
             setTimeout(() => { this.style.transform = ''; }, 150);
         }
-    });
-});
-
-
-// 页面加载动画
-window.addEventListener('load', () => {
-    document.querySelectorAll('.card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            card.style.transition = 'opacity 0.5s, transform 0.5s';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 150);
     });
 });

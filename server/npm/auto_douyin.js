@@ -38,8 +38,8 @@ async function fetchDouyinData(userId) {
 
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36');
-	
-	// ✅ 管理接口：更新 cookie（只允许内网访问）
+
+        // ✅ 管理接口：更新 cookie（只允许内网访问）
         app.post('/api/update-cookie', (req, res) => {
             const { sessionid, ssid } = req.body;
             if (sessionid) COOKIES.sessionid = sessionid;
@@ -122,8 +122,8 @@ async function refreshAllData() {
     console.log('✅ 数据已更新:', DATA_FILE);
 }
 
-// 定时任务：每8小时执行一次
-cron.schedule('0 */8 * * *', () => {
+// 定时任务：每2小时执行一次
+cron.schedule('0 */2 * * *', () => {
     refreshAllData();
 });
 
