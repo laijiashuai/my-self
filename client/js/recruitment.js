@@ -52,6 +52,12 @@ document.getElementById('recruitForm').addEventListener('submit', async function
             body: formData
         });
 
+        //3. 并发送邮件到我的邮箱
+        const mailResponse = await fetch('/server/api/hire_mail.php', {
+            method: 'POST',
+            body: formData
+        });
+
         const result = await response.json();
 
         if (result.success) {
