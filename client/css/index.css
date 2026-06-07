@@ -111,6 +111,7 @@ body {
 .bottom-link {
     text-align: center;
     padding: 30px 20px 40px;
+    width: 100%;
 }
 
 .bottom-link a {
@@ -120,7 +121,7 @@ body {
     color: #1e88e5;
     background: rgba(66, 165, 245, 0.1);
     border: 1px solid rgba(66, 165, 245, 0.25);
-    text-decoration: none;
+    text-decoration: none !important;
     border-radius: 20px;
     transition: all 0.2s;
 }
@@ -129,5 +130,5 @@ body {
     color: #1565c0;
     background: rgba(66, 165, 245, 0.2);
     border-color: rgba(66, 165, 245, 0.4);
-    text-decoration: none;
+    text-decoration: none !important;
 }
