@@ -1,4 +1,7 @@
-const API_BASE = 'http://106.13.191.103:3001/api/douyin/';
+//const config = fetch('/server/config/node_conf.json');
+//const API_BASE = `http://${config.host}:${config.port}/api/douyin/`;
+const API_BASE = `http://localhost:3000/api/douyin/`;
+
 
 const ACCOUNTS = [
     { id: 'MS4wLjABAAAAYLVzofvsSh9Whf4VPeVXU6HB8oG1vW1hnCk7z1lJbyM', cardIndex: 0 },
@@ -10,26 +13,29 @@ async function fetchAccountsData() {
         const res = await fetch(`${API_BASE}accounts`);
         return await res.json();
     } catch (err) {
-        console.error('获取配置失败:', err);
+        console.error(`获取配置失败:${API_BASE}accounts`, err);
         return {};
     }
 }
 
-async function updateCardData(account) {
-    const card = document.querySelectorAll('.card')[account.cardIndex];
-    const fansEl = card.querySelector('.fans-count');
-    const likesEl = card.querySelector('.likes-count');
-
+async function updateCardData() {
     const data = await fetchAccountsData();
-    const accountData = data[account.id];
 
-    if (accountData) {
-        fansEl.textContent = accountData.fans;
-        likesEl.textContent = accountData.likes;
-    } else {
-        fansEl.textContent = '--';
-        likesEl.textContent = '--';
+    for (const account of ACCOUNTS) {
+        const card = document.querySelectorAll('.card')[account.cardIndex];
+        const fansEl = card.querySelector('.fans-count');
+        const likesEl = card.querySelector('.likes-count');
+        const accountData = data[account.id];
+
+        if (accountData) {
+            fansEl.textContent = accountData.fans;
+            likesEl.textContent = accountData.likes;
+        } else {
+            fansEl.textContent = '--';
+            likesEl.textContent = '--';
+        }
     }
+
 }
 
 window.addEventListener('load', async () => {
@@ -47,8 +53,7 @@ window.addEventListener('load', async () => {
 
     // 2. 加载数据（等动画开始后再请求，不阻塞渲染）
     setTimeout(async () => {
-        await updateCardData(ACCOUNTS[0]);
-        await updateCardData(ACCOUNTS[1]);
+        await updateCardData();
     }, 300);
 });
 

@@ -1,0 +1,5 @@
+{
+    "port": 3000,
+    "host": "106.13.191.103",
+    "chrome_path": "/usr/bin/chromium-browser"
+}

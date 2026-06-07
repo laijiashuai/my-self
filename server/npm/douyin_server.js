@@ -5,8 +5,8 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-//const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const CHROME_PATH = '/usr/bin/chromium-browser';
+const config = require('../config/node_conf.json');
+//const CHROME_PATH = '/usr/bin/chromium-browser';
 
 // ✅ 全局变量，存 cookie
 let COOKIES = {
@@ -24,7 +24,7 @@ app.get('/api/douyin/:userId', async (req, res) => {
 
     try {
         browser = await puppeteer.launch({
-            executablePath: process.env.CHROME_PATH || CHROME_PATH,
+            executablePath: process.env.CHROME_PATH || config.chrome_path,
             headless: true,
             args: [
                 '--no-sandbox',
@@ -37,8 +37,8 @@ app.get('/api/douyin/:userId', async (req, res) => {
         });
 
         const page = await browser.newPage();
-	// 模拟真实请求      
-	await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36');
+        // 模拟真实请求      
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36');
 
         // ✅ 管理接口：更新 cookie（只允许内网访问）
         app.post('/api/update-cookie', (req, res) => {
@@ -114,7 +114,6 @@ app.get('/api/douyin/:userId', async (req, res) => {
     }
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-    console.log(`✅ 代理运行: http://localhost:${PORT}`);
+app.listen(config.port, () => {
+    console.log(`✅ 代理运行: http://${config.host}:${config.port}`);
 });

@@ -8,7 +8,8 @@ const path = require('path');
 const app = express();
 app.use(cors());
 
-const CHROME_PATH = '/usr/bin/chromium-browser';
+const config = require('../config/node_conf.json');
+
 const DATA_FILE = path.join(__dirname, '../config/accounts.json');
 
 const ACCOUNTS = [
@@ -31,7 +32,7 @@ async function fetchDouyinData(userId) {
     let browser = null;
     try {
         browser = await puppeteer.launch({
-            executablePath: CHROME_PATH,
+            executablePath: process.env.CHROME_PATH || config.chrome_path,
             headless: 'new',
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
         });
@@ -136,8 +137,7 @@ app.get('/api/douyin/accounts', (req, res) => {
     res.json(JSON.parse(data));
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-    console.log(`✅ 代理运行: http://localhost:${PORT}`);
+app.listen(config.port, () => {
+    console.log(`✅ 代理运行: http://${config.host}:${config.port}/accounts`);
 });
 
