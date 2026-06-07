@@ -1,3 +1,12 @@
+a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -109,25 +118,29 @@ body {
 }
 
 .bottom-link {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 30px 20px 40px;
     width: 100%;
 }
 
 .bottom-link a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 8px 20px;
     font-size: 0.9rem;
-    color: #1e88e5;
+    color: #1e88e5 !important;
     background: rgba(66, 165, 245, 0.1);
     border: 1px solid rgba(66, 165, 245, 0.25);
     text-decoration: none !important;
+    text-underline-offset: 0;
     border-radius: 20px;
     transition: all 0.2s;
 }
 
 .bottom-link a:hover {
-    color: #1565c0;
+    color: #1565c0 !important;
     background: rgba(66, 165, 245, 0.2);
     border-color: rgba(66, 165, 245, 0.4);
     text-decoration: none !important;
