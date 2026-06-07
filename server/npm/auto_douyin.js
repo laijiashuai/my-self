@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 
 const CHROME_PATH = '/usr/bin/chromium-browser';
-const DATA_FILE = path.join(__dirname, 'accounts.json');
+const DATA_FILE = path.join(__dirname, '../config/accounts.json');
 
 const ACCOUNTS = [
     { id: 'MS4wLjABAAAAYLVzofvsSh9Whf4VPeVXU6HB8oG1vW1hnCk7z1lJbyM', cardIndex: 0 },
