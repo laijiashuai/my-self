@@ -9,6 +9,7 @@ body {
     background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
     min-height: 100vh;
     padding: 20px;
+    padding-bottom: 60px;
 }
 
 .header {
@@ -65,29 +66,39 @@ body {
 .card p {
     font-size: 1rem;
     color: #78909c;
-    margin-bottom: 24px;
-    line-height: 1.6;
+    margin-bottom: 16px;
+    line-height: 1.8;
+    text-align: left;
 }
 
-.btn {
-    display: inline-block;
-    padding: 12px 32px;
-    background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
+.feature-list {
+    list-style: none;
+    text-align: left;
+    margin-top: 8px;
+}
+
+.feature-list li {
     font-size: 1rem;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
+    color: #78909c;
+    margin-bottom: 14px;
+    line-height: 1.7;
+    padding-left: 20px;
+    position: relative;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
+.feature-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #42a5f5;
+    font-weight: 700;
 }
 
-.btn:active {
-    transform: translateY(0);
+.footer {
+    text-align: center;
+    padding: 40px 20px 20px;
+    color: #90a4ae;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
@@ -106,28 +117,9 @@ body {
     .card h2 {
         font-size: 1.4rem;
     }
-}
 
-.bottom-link {
-    text-align: center;
-    padding: 30px 20px 40px;
-}
-
-.bottom-link a {
-    display: inline-block;
-    padding: 8px 20px;
-    font-size: 0.9rem;
-    color: #1e88e5;
-    background: rgba(66, 165, 245, 0.1);
-    border: 1px solid rgba(66, 165, 245, 0.25);
-    text-decoration: none;
-    border-radius: 20px;
-    transition: all 0.2s;
-}
-
-.bottom-link a:hover {
-    color: #1565c0;
-    background: rgba(66, 165, 245, 0.2);
-    border-color: rgba(66, 165, 245, 0.4);
-    text-decoration: none;
+    .card p,
+    .feature-list li {
+        font-size: 0.95rem;
+    }
 }

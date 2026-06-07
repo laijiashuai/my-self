@@ -2,35 +2,39 @@
 
 ---
 
-## 一、简介 / Introduction
+## 一、项目背景 / Introduction
 
-> 本项目以个人成长为目标，核心目的是提升前端研发能力，并向全栈工程师方向发展。
-> 全程由我独立完成，借助文心一言辅助，覆盖需求设计（1天）→ 技术实现（3天）→ 功能测试与问题修复（1天）。
+本项目源于个人成长驱动，旨在系统性提升前端研发能力，并以全栈工程师为目标方向推进技术栈拓展。
 
----
-
-## 二、项目功能 / Project Features
-
-| 序号 | 模块 | 说明 |
-|------|------|------|
-| 1 | 首页 | 三个卡片：个人简历、招聘信息录入、生活展 |
-| 2 | 个人简历 | 头像展示；点击证书弹窗查看图片；点击专利跳转官网查询入口 |
-| 3 | 招聘信息 | 数据保存至数据库；新数据触发邮件通知 |
-| 4 | 生活展 | V1 使用抖音主页数据；后续版本迭代加入更多元素 |
-| 5 | 整体风格 | 统一设计，保持一致 |
+项目全程独立完成，借助 AI 辅助工具（文心一言）提升开发效率，整体周期 5 天：
+- 需求设计：1 天
+- 技术实现：3 天
+- 测试与修复：1 天
 
 ---
 
-## 三、技术设计 / Technical Design
+## 二、功能模块 / Features
 
-| 序号 | 模块 | 方案 |
-|------|------|------|
-| 1 | 总体架构 | 前后端分离，低耦合高内聚；前端 HTML/CSS/JS 分离，媒体资源集中管理；后端 PHP 接口单一职责，配置文件独立存放，禁止硬编码静态常量 |
-| 2 | 首页 | 纯静态页面，无 JS、无 PHP 调用，卡片跳转对应功能页 |
-| 3 | 个人简历 | 静态页面 + JS 点击弹窗，展示证书图片 |
-| 4 | 招聘信息 | JS 处理点击事件 → 调用 PHP 接口；PHP 提供三个接口：按电话查询，无重复则插入数据库并发送邮件 |
-| 5 | 邮件功能 | PHPMailer + 外部 SMTP 中继，避免被云服务判定为垃圾邮件 |
-| 6 | 生活展 | 展示抖音主页粉丝数与点赞数；支持实时更新 / 定时更新两种方案；Node.js 管理代理服务，抓取并解析抖音主页标签；定时更新数据存本地文件，访问时读取 |
+| 模块 | 功能说明 |
+|------|----------|
+| 首页 | 三大功能入口：个人简历、招聘信息录入、生活展示 |
+| 个人简历 | 头像展示；证书点击弹窗查看原件；专利链接跳转至官方查询平台 |
+| 招聘信息 | 数据持久化至 MySQL；新增记录自动触发邮件通知 |
+| 生活展示 | V1 接入抖音主页数据；后续版本持续迭代丰富内容 |
+| 整体风格 | 统一视觉语言，确保跨页面一致性 |
+
+---
+
+## 三、技术架构 / Technical Design
+
+| 模块 | 技术方案 |
+|------|----------|
+| 总体架构 | 前后端分离，低耦合高内聚；前端 HTML/CSS/JS 分离，资源集中管理；后端 PHP 遵循单一职责原则，配置独立管理，杜绝硬编码 |
+| 首页 | 纯静态实现，无 JS 逻辑、无 PHP 调用，卡片导航至对应功能页 |
+| 个人简历 | 静态页面 + JS 交互弹窗，按需展示证书图片 |
+| 招聘信息 | JS 捕获事件 → 调用 PHP 接口；PHP 实现三段逻辑：按手机号查询 → 无重复则入库 → 触发邮件通知 |
+| 邮件服务 | PHPMailer + 外部 SMTP 中继，规避云服务垃圾邮件拦截 |
+| 生活展示 | 展示抖音粉丝数与获赞数；支持实时 / 定时双更新方案；Node.js 代理抓取主页并解析数据；定时模式下数据落盘本地，页面访问时直接读取 |
 
 ---
 ---
@@ -41,30 +45,34 @@
 
 ## 1. Introduction
 
-> This project is driven by personal growth, with the core goal of improving front-end development skills and progressing toward a full-stack engineer.
-> The entire project was completed independently by me, with assistance from ERNIE Bot, covering requirement design (1 day) → technical implementation (3 days) → functional testing and bug fixes (1 day).
+Driven by personal growth, this project aims to systematically enhance front-end development skills while progressing toward a full-stack engineering direction.
+
+Completed independently with AI-assisted tooling (ERNIE Bot) over a 5-day cycle:
+- Requirement Design: 1 day
+- Technical Implementation: 3 days
+- Testing & Bug Fixes: 1 day
 
 ---
 
-## 2. Project Features
+## 2. Features
 
-| # | Module | Description |
-|---|--------|-------------|
-| 1 | Homepage | Three cards: Resume, Recruitment Info Entry, Life Showcase |
-| 2 | Resume | Avatar display; click certificate to view image in popup; click patent to redirect to official query portal |
-| 3 | Recruitment Info | Data saved to database; new entries trigger email notification |
-| 4 | Life Showcase | V1 uses Douyin (TikTok China) homepage data; future versions will include richer elements |
-| 5 | Overall Style | Unified design, consistent across all pages |
+| Module | Description |
+|--------|-------------|
+| Homepage | Three entry points: Resume, Recruitment Info, Life Showcase |
+| Resume | Avatar display; click certificate to view original in popup; patent links redirect to official query portal |
+| Recruitment Info | Data persisted to MySQL; new entries automatically trigger email notification |
+| Life Showcase | V1 integrates Douyin homepage data; future versions will progressively enrich content |
+| Overall Style | Unified visual language ensuring cross-page consistency |
 
 ---
 
 ## 3. Technical Design
 
-| # | Module | Solution |
-|---|--------|----------|
-| 1 | Overall Architecture | Front-end/back-end separation, low coupling & high cohesion; front-end HTML/CSS/JS separated, media assets centrally managed; back-end PHP interfaces follow single-responsibility principle, config files stored separately, no hardcoded static constants |
-| 2 | Homepage | Pure static page, no JS, no PHP calls; cards navigate to corresponding feature pages |
-| 3 | Resume | Static page + JS click-to-popup for displaying certificate images |
-| 4 | Recruitment Info | JS handles click events → calls PHP interface; PHP provides 3 APIs: query by phone number, insert if no duplicate exists, then send email notification |
-| 5 | Email | PHPMailer + external SMTP relay to avoid being flagged as spam by cloud services |
-| 6 | Life Showcase | Display Douyin follower count & like count; supports real-time update / scheduled update; Node.js manages proxy service to fetch and parse Douyin homepage tags; scheduled data stored in local files, read on page access |
+| Module | Solution |
+|--------|----------|
+| Overall Architecture | Front-end/back-end separation, low coupling & high cohesion; front-end HTML/CSS/JS separated with centralized asset management; back-end PHP follows single-responsibility principle, config files managed independently, no hardcoded constants |
+| Homepage | Pure static implementation, no JS logic, no PHP calls; cards navigate to corresponding feature pages |
+| Resume | Static page + JS interactive popup to display certificate images on demand |
+| Recruitment Info | JS captures events → calls PHP API; PHP executes three-step logic: query by phone → insert if no duplicate → trigger email notification |
+| Email Service | PHPMailer + external SMTP relay to avoid cloud spam filtering |
+| Life Showcase | Displays Douyin follower count & like count; supports real-time / scheduled dual-update modes; Node.js proxy fetches and parses homepage data; scheduled data stored locally, read on page access |
