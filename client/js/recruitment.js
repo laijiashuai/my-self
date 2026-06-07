@@ -13,7 +13,6 @@ document.getElementById('recruitForm').addEventListener('submit', async function
         return;
     }
 
-    // 校验最高薪资大于最低薪资
     const minSalary = parseInt(formData.get('min_salary'), 10);
     const maxSalary = parseInt(formData.get('max_salary'), 10);
 
@@ -25,12 +24,10 @@ document.getElementById('recruitForm').addEventListener('submit', async function
     }
 
     try {
-        // 1. 先查手机号是否存在
+        // 1. 查手机号是否存在
         const checkResponse = await fetch('/server/api/check_phone.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `phone=${encodeURIComponent(phone)}`
         });
         const checkResult = await checkResponse.json();
@@ -46,33 +43,41 @@ document.getElementById('recruitForm').addEventListener('submit', async function
             return;
         }
 
-        // 2. 不存在，再插入
+        // 2. 插入数据库
         const response = await fetch('/server/api/recruitment.php', {
             method: 'POST',
             body: formData
         });
-
-        //3. 并发送邮件到我的邮箱
-        const mailResponse = await fetch('/server/api/hire_mail.php', {
-            method: 'POST',
-            body: formData
-        });
-
         const result = await response.json();
 
-        if (result.success) {
-            messageDiv.className = 'message success';
-            messageDiv.textContent = '我已收到 谢谢';
+        if (!result.success) {
+            messageDiv.className = 'message error';
+            messageDiv.textContent = result.message || '提交失败 请重试';
             messageDiv.style.display = 'block';
-            this.reset();
+            return;
+        }
+
+        // 3. 插入成功，才发邮件
+        const formDataForEmail = new FormData(this);
+        const mailResponse = await fetch('/server/api/hire_email.php', {
+            method: 'POST',
+            body: formDataForEmail
+        });
+
+        if (mailResponse.ok) {
+            messageDiv.className = 'message success';
+            messageDiv.textContent = '提交成功，已发送邮件通知我';
         } else {
             messageDiv.className = 'message error';
-            messageDiv.textContent = result.message || '预期之外的错误 请重试';
-            messageDiv.style.display = 'block';
+            messageDiv.textContent = '提交成功，但邮件发送失败';
         }
+        messageDiv.style.display = 'block';
+        this.reset();
+
     } catch (error) {
         messageDiv.className = 'message error';
-        messageDiv.textContent = '网络异常 请重试';
+        messageDiv.textContent = error.message || '网络异常 请重试';
         messageDiv.style.display = 'block';
     }
 });
+
