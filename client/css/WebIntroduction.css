@@ -151,3 +151,57 @@ body {
     border-color: rgba(66, 165, 245, 0.4);
     text-decoration: none !important;
 }
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: transparent;
+    /* 去掉白色 */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    /* 改成浅色边框 */
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 100;
+}
+
+.btn-back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    color: #1a2332;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-back-home:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.btn-back-home svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-back-home:hover svg {
+    transform: translateX(-2px);
+}
