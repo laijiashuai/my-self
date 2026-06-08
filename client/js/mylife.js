@@ -1,9 +1,11 @@
-//const config = fetch('/server/config/node_conf.json');
-//const API_BASE = `http://${config.host}:${config.port}/api/douyin/`;
-const API_HOST = '106.13.191.103';
-const API_PORT = 3000;
-const API_BASE = `http://${API_HOST}:${API_PORT}/api/douyin/`;
-
+(async () => {
+    // 1. 加载配置（只加载一次）
+    const config = await ConfigManager.loadConfig();
+    if (!config) {
+        console.error('配置加载失败，页面无法正常工作');
+        return;
+    }
+})();
 
 const ACCOUNTS = [
     { id: 'MS4wLjABAAAAYLVzofvsSh9Whf4VPeVXU6HB8oG1vW1hnCk7z1lJbyM', cardIndex: 0 },
@@ -11,20 +13,30 @@ const ACCOUNTS = [
 ];
 
 async function fetchAccountsData() {
+    const API_BASE = ConfigManager.getAPIBase();
+    console.log('API Base:', API_BASE);
     try {
-        const res = await fetch(`${API_BASE}accounts`);
-        return await res.json();
+        if (API_BASE) {
+            const res = await fetch(`${API_BASE}accounts`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return await res.json();
+        } else {
+            console.log('API Base null');
+        }
     } catch (err) {
-        console.error(`获取配置失败:${API_BASE}accounts`, err);
+        console.error(`获取数据失败: ${API_BASE}accounts`, err);
         return {};
     }
 }
 
 async function updateCardData() {
     const data = await fetchAccountsData();
+    const cards = document.querySelectorAll('.card');
 
     for (const account of ACCOUNTS) {
-        const card = document.querySelectorAll('.card')[account.cardIndex];
+        const card = cards[account.cardIndex];
+        if (!card) continue;
+
         const fansEl = card.querySelector('.fans-count');
         const likesEl = card.querySelector('.likes-count');
         const accountData = data[account.id];
@@ -40,6 +52,7 @@ async function updateCardData() {
 
 }
 
+// 3. 入场动画 + 数据加载
 window.addEventListener('load', async () => {
     // 1. 入场动画
     const cards = document.querySelectorAll('.card');
@@ -59,8 +72,7 @@ window.addEventListener('load', async () => {
     }, 300);
 });
 
-
-// 点击波纹效果
+// 4. 点击波纹
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', function (e) {
         if (!e.target.classList.contains('btn')) {
