@@ -14,7 +14,6 @@ const ACCOUNTS = [
 
 async function fetchAccountsData() {
     const API_BASE = ConfigManager.getAPIBase();
-    console.log('API Base:', API_BASE);
     try {
         if (API_BASE) {
             const res = await fetch(`${API_BASE}accounts`);
