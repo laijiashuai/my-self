@@ -1,0 +1,52 @@
+services:
+  nginx:
+    build:
+      context: /home/laijiashuai/my-self
+      dockerfile: docker/Dockerfile.nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /home/laijiashuai/my-self/client:/usr/share/nginx/html:ro
+      - /home/laijiashuai/my-self/server:/var/www/my-self/server:ro
+    depends_on:
+      - php-fpm
+    networks:
+      - app-net
+
+  php-fpm:
+    build:
+      context: /home/laijiashuai/my-self
+      dockerfile: docker/Dockerfile.php
+    volumes:
+      - /home/laijiashuai/my-self/server:/var/www/my-self/server:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app-net
+
+  mysql:
+    image: mysql:8.0
+    container_name: my-self-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123456
+      MYSQL_DATABASE: myself
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass123
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot123456"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
