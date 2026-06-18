@@ -55,16 +55,14 @@ async function fetchDouyinData(userId) {
                 '--disable-gpu',
                 '--disable-dev-shm-usage',
                 '--disable-blink-features=AutomationControlled',
-                // ✅ 如需代理，取消下面注释
-                // `--proxy-server=${config.proxy || 'http://127.0.0.1:7890'}`
             ]
         });
 
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36');
 
-        await page.setCookie({ name: 'sessionid', value: COOKIES.sessionid, domain: '.douyin.com' });
-        await page.setCookie({ name: 'ssid', value: COOKIES.ssid, domain: '.douyin.com' });
+        //await page.setCookie({ name: 'sessionid', value: COOKIES.sessionid, domain: '.douyin.com' });
+        //await page.setCookie({ name: 'ssid', value: COOKIES.ssid, domain: '.douyin.com' });
 
         await page.goto(`https://www.douyin.com/user/${userId}`, {
             waitUntil: 'domcontentloaded',
@@ -116,9 +114,11 @@ async function fetchDouyinData(userId) {
     }
 }
 
+// ✅ 修改后：只更新成功的数据
 async function refreshAllData() {
     console.log('🔄 开始刷新数据...');
     const result = {};
+    let successCount = 0;
 
     for (const acc of ACCOUNTS) {
         const data = await fetchDouyinData(acc.id);
@@ -128,12 +128,21 @@ async function refreshAllData() {
                 likes: data.likes,
                 updatedAt: new Date().toISOString()
             };
+            successCount++;
+            console.log(`✅ ${acc.id} 获取成功`);
+        } else {
+            console.log(`❌ ${acc.id} 获取失败，不更新`);
         }
         await new Promise(resolve => setTimeout(resolve, 10000));
     }
 
-    fs.writeFileSync(DATA_FILE, JSON.stringify(result, null, 2));
-    console.log('✅ 数据已更新:', DATA_FILE);
+    // ✅ 只有有成功数据才写入文件
+    if (successCount > 0) {
+        fs.writeFileSync(DATA_FILE, JSON.stringify(result, null, 2));
+        console.log(`✅ 已更新 ${successCount}/${ACCOUNTS.length} 条数据: ${DATA_FILE}`);
+    } else {
+        console.log('⚠️ 全部失败，未更新文件');
+    }
 }
 
 cron.schedule('0 */2 * * *', () => {
