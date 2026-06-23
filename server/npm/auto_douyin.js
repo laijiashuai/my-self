@@ -55,6 +55,7 @@ async function fetchDouyinData(userId) {
                 '--disable-gpu',
                 '--disable-dev-shm-usage',
                 '--disable-blink-features=AutomationControlled',
+		'--lang=zh-CN',  // ✅ 强制中文
             ]
         });
 
@@ -69,6 +70,9 @@ async function fetchDouyinData(userId) {
             timeout: 60000
         });
 
+        // ✅ 截图调试
+	//await page.screenshot({ path: `debug_${userId}.png` });
+
         // ✅ 不等动态类名，直接等内容出现
         await page.waitForFunction(() => {
             const divs = document.querySelectorAll('div');
@@ -78,10 +82,7 @@ async function fetchDouyinData(userId) {
                 }
             }
             return false;
-        }, { timeout: 15000 });
-
-        // ✅ 截图调试
-        //await page.screenshot({ path: `debug_${userId}.png` });
+        }, { timeout: 30000 });
 
         const fans = await page.evaluate(() => {
             const divs = document.querySelectorAll('div');
@@ -117,7 +118,10 @@ async function fetchDouyinData(userId) {
 // ✅ 修改后：只更新成功的数据
 async function refreshAllData() {
     console.log('🔄 开始刷新数据...');
-    const result = {};
+    let result = {};
+    if (fs.existsSync(DATA_FILE)) {
+        result = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+    }
     let successCount = 0;
 
     for (const acc of ACCOUNTS) {
