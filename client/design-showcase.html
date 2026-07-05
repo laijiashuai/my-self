@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shuyran 电商平台 · 设计方案</title>
+  <link rel="stylesheet" href="./css/design-showcase.css">
+</head>
+<body>
+
+  <!-- ==================== 导航栏 ==================== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-brand">Shuyran</span>
+      <ul class="nav-links">
+        <li><a href="#overview">概览</a></li>
+        <li><a href="#architecture">架构</a></li>
+        <li><a href="#highlights">设计亮点</a></li>
+        <li><a href="#deployment">自动化部署</a></li>
+        <li><a href="#cicd">发布流程</a></li>
+        <li><a href="#security">配置安全</a></li>
+        <li><a href="#summary">总结</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== Section 1: Hero ==================== -->
+  <header id="hero">
+    <div class="hero-bg-code" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-tag">// Full-Stack E-Commerce Solution</p>
+      <h1>Shuyran 电商平台</h1>
+      <p class="hero-subtitle">基于 Spring Cloud 微服务架构的全栈电商解决方案</p>
+      <p class="hero-desc">8 个微服务 · 9 个 Docker 镜像 · 14 个容器 · 一键部署 · 全方位安全防护</p>
+    </div>
+    <div class="scroll-indicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- ==================== Section 2: 项目规模概览 ==================== -->
+  <section id="overview" class="section">
+    <h2 class="section-title">项目规模概览</h2>
+    <p class="section-subtitle">独立设计、自主开发的全栈电商平台，覆盖从用户端到管理后台的完整业务链路</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-icon">&#9881;</span>
+        <span class="stat-number" data-target="8">0</span>
+        <span class="stat-label">微服务</span>
+        <span class="stat-desc">Spring Cloud 独立部署</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">&#128220;</span>
+        <span class="stat-number" data-target="200">0</span>
+        <span class="stat-label">Java 文件</span>
+        <span class="stat-desc">覆盖完整业务逻辑</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">&#128230;</span>
+        <span class="stat-number" data-target="9">0</span>
+        <span class="stat-label">Docker 镜像</span>
+        <span class="stat-desc">多阶段构建优化</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">&#128225;</span>
+        <span class="stat-number" data-target="14">0</span>
+        <span class="stat-label">运行容器</span>
+        <span class="stat-desc">Compose 统一编排</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">&#9889;</span>
+        <span class="stat-number" data-target="1">0</span>
+        <span class="stat-label">一键部署</span>
+        <span class="stat-desc">bash 脚本全自动化</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Section 3: 技术架构全景图 ==================== -->
+  <section id="architecture" class="section">
+    <h2 class="section-title">技术架构全景图</h2>
+    <p class="section-subtitle">四层微服务架构：前端 → 网关 → 业务服务 → 基础设施</p>
+    <div id="arch-diagram" class="diagram-container"></div>
+    <div class="arch-legend">
+      <span><i style="background:#58a6ff"></i> 前端层</span>
+      <span><i style="background:#a371f7"></i> 网关层</span>
+      <span><i style="background:#3fb950"></i> 业务服务层</span>
+      <span><i style="background:#d2991d"></i> 基础设施层</span>
+    </div>
+  </section>
+
+  <!-- ==================== Section 4: 架构设计亮点 ==================== -->
+  <section id="highlights" class="section">
+    <h2 class="section-title">架构设计亮点</h2>
+    <p class="section-subtitle">六大核心设计，贯穿业务、安全、性能、可扩展性</p>
+
+    <div class="highlights-grid">
+      <!-- 亮点 1 — 网关深度防御 -->
+      <div class="highlight-card">
+        <div class="hl-header">
+          <span class="hl-icon">&#128737;</span>
+          <div>
+            <h3>统一网关深度防御</h3>
+            <span class="hl-tag">// defense-in-depth</span>
+          </div>
+        </div>
+        <p class="hl-desc">7 过滤器链顺序执行：Auth/JWT 鉴权 → CSRF 防护 → 灰度路由 → HTTPS 强制 → Redis Lua 限流 → 请求日志 → XSS 拦截。</p>
+        <div class="filter-chain">
+          <span>Auth</span><i>→</i><span>CSRF</span><i>→</i><span>灰度</span><i>→</i><span>HTTPS</span><i>→</i><span>限流</span><i>→</i><span>日志</span><i>→</i><span>XSS</span>
+        </div>
+        <div class="hl-tech-tags">
+          <span>Resilience4j 熔断</span><span>Token 黑名单</span><span>Redis Lua 原子化</span><span>CORS 热更新</span>
+        </div>
+      </div>
+
+      <!-- 亮点 2 — 策略模式 -->
+      <div class="highlight-card">
+        <div class="hl-header">
+          <span class="hl-icon">&#128295;</span>
+          <div>
+            <h3>策略模式多场景复用</h3>
+            <span class="hl-tag">// strategy-pattern</span>
+          </div>
+        </div>
+        <p class="hl-desc">支付服务（支付宝 / 微信）与营销服务（满减 / 直降）均采用策略 + 工厂模式，新增渠道只需实现接口，完全遵循开闭原则。</p>
+        <div class="strategy-diagram">
+          <div class="strategy-group">
+            <strong>支付策略</strong>
+            <span>PaymentStrategy</span>
+            <span class="impl">AlipayStrategyImpl</span>
+            <span class="impl">WechatPayStrategyImpl</span>
+          </div>
+          <div class="strategy-group">
+            <strong>营销策略</strong>
+            <span>DiscountStrategy</span>
+            <span class="impl">DirectDiscountStrategy</span>
+            <span class="impl">FullReductionStrategy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 亮点 3 — RBAC 权限 -->
+      <div class="highlight-card">
+        <div class="hl-header">
+          <span class="hl-icon">&#128272;</span>
+          <div>
+            <h3>RBAC 权限模型</h3>
+            <span class="hl-tag">// access-control</span>
+          </div>
+        </div>
+        <p class="hl-desc">admin 服务独立五表设计，与 C 端完全物理隔离。独立 JWT 密钥、独立 ThreadLocal 上下文、独立鉴权拦截器，权限标识精确到按钮级。</p>
+        <div id="rbac-diagram" class="diagram-container rbac-container"></div>
+        <div class="hl-tech-tags">
+          <span>BCrypt 密码</span><span>动态路由</span><span>AOP 操作日志</span><span>admin:模块:操作</span>
+        </div>
+      </div>
+
+      <!-- 亮点 4 — 库存乐观锁 -->
+      <div class="highlight-card">
+        <div class="hl-header">
+          <span class="hl-icon">&#128274;</span>
+          <div>
+            <h3>库存乐观锁防超卖</h3>
+            <span class="hl-tag">// optimistic-lock</span>
+          </div>
+        </div>
+        <p class="hl-desc">独立库存表 + version 字段 + 自定义 SQL（<code>WHERE version = #{version}</code>），配合重试机制（最多 3 次，间隔 50ms），在高并发下保证数据一致性。</p>
+        <pre class="hl-code"><code><span class="kw">UPDATE</span> stock <span class="kw">SET</span> available = available - #{qty},
+       version = version + 1
+<span class="kw">WHERE</span> sku_id = #{skuId}
+  <span class="kw">AND</span> version = #{version}
+  <span class="kw">AND</span> available >= #{qty}</code></pre>
+      </div>
+
+      <!-- 亮点 5 — AOP 幂等 -->
+      <div class="highlight-card">
+        <div class="hl-header">
+          <span class="hl-icon">&#128260;</span>
+          <div>
+            <h3>AOP 幂等切面</h3>
+            <span class="hl-tag">// idempotency</span>
+          </div>
+        </div>
+        <p class="hl-desc">自定义 <code>@PayIdempotent</code> / <code>@Idempotent</code> 注解 + 环绕切面，基于 Redis 分布式锁实现支付和营销操作的防重复提交。</p>
+        <pre class="hl-code"><code><span class="anno">@PayIdempotent</span>(key = <span class="str">"#dto.orderNo"</span>, timeout = <span class="num">30</span>)
+<span class="kw">public</span> PayVO createPay(CreatePayDTO dto) {
+    <span class="cm">// 切面自动：加锁 → 执行业务 → 释放锁</span>
+}</code></pre>
+      </div>
+
+      <!-- 亮点 6 — RocketMQ 异步 -->
+      <div class="highlight-card">
+        <div class="hl-header">
+          <span class="hl-icon">&#128228;</span>
+          <div>
+            <h3>RocketMQ 异步解耦</h3>
+            <span class="hl-tag">// event-driven</span>
+          </div>
+        </div>
+        <p class="hl-desc">订单状态变更通过 RocketMQ 发布事件，消息服务异步监听从站内通知、短信、邮件；营销服务监听营销事件批量推送。削峰填谷，服务间松耦合。</p>
+        <div class="mq-flow">
+          <span class="mq-node">Order 服务</span>
+          <span class="mq-arrow">→</span>
+          <span class="mq-node mq-broker">RocketMQ</span>
+          <span class="mq-arrow">→</span>
+          <span class="mq-node">Message 服务</span>
+          <span class="mq-arrow">→</span>
+          <span class="mq-node mq-end">通知 / 短信 / 邮件</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Section 5: 自动化部署架构 ==================== -->
+  <section id="deployment" class="section">
+    <h2 class="section-title">自动化部署架构</h2>
+    <p class="section-subtitle">从源码到上线，一行命令完成全流程自动化</p>
+
+    <div id="deploy-diagram" class="diagram-container"></div>
+
+    <div class="deploy-steps">
+      <div class="deploy-step">
+        <span class="step-num">①</span>
+        <div>
+          <h4>一行命令启动</h4>
+          <p><code>bash scripts/docker-prod.sh</code> — 克隆仓库后一条命令完成全部部署，14 个容器自动编排启动。</p>
+        </div>
+      </div>
+      <div class="deploy-step">
+        <span class="step-num">②</span>
+        <div>
+          <h4>智能变更检测</h4>
+          <p>通过对比子模块 commit hash 自动识别变更服务。common 模块变更触发全量重建，单个服务变更仅重建该服务。</p>
+        </div>
+      </div>
+      <div class="deploy-step">
+        <span class="step-num">③</span>
+        <div>
+          <h4>分批并行构建</h4>
+          <p>默认每批 2 个服务并行构建，带 spinner 动画进度 UI + 实时日志预览。可通过 <code>BUILD_PARALLEL_NUM</code> 环境变量调节并发数。</p>
+        </div>
+      </div>
+      <div class="deploy-step">
+        <span class="step-num">④</span>
+        <div>
+          <h4>自动密钥生成</h4>
+          <p>首次部署自动检测 <code>CHANGE_ME</code> 占位符，通过 <code>openssl rand -base64</code> 生成 8 个随机密钥，替换所有敏感配置项。</p>
+        </div>
+      </div>
+      <div class="deploy-step">
+        <span class="step-num">⑤</span>
+        <div>
+          <h4>Nacos 配置自动导入</h4>
+          <p>13 个 Data ID（路由/限流/灰度/CORS + 9 个服务配置）通过 <code>nacos-init.sh</code> 批量导入，支持鉴权/非鉴权模式自适应。</p>
+        </div>
+      </div>
+      <div class="deploy-step">
+        <span class="step-num">⑥</span>
+        <div>
+          <h4>健康检查全覆盖</h4>
+          <p>所有服务均配置 Docker healthcheck，启动顺序按依赖链严格编排：基础设施 → Nacos → 业务服务 → 网关 → 前端。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Section 6: 发布流程设计 ==================== -->
+  <section id="cicd" class="section">
+    <h2 class="section-title">发布流程设计</h2>
+    <p class="section-subtitle">Git 子模块独立演进 + Docker Compose 统一编排 + 增量发布</p>
+
+    <div id="cicd-diagram" class="diagram-container"></div>
+
+    <div class="flow-cards">
+      <div class="flow-card">
+        <span class="flow-icon">&#128187;</span>
+        <h3>日常开发</h3>
+        <div class="flow-steps">
+          <span>子模块分支</span><i>→</i><span>独立提交</span><i>→</i><span>PR 审查</span><i>→</i><span>更新指针</span>
+        </div>
+        <p>每个微服务独立 Git 仓库，独立分支、独立版本，根仓库通过 commit 指针精确锁定各模块版本。</p>
+      </div>
+      <div class="flow-card">
+        <span class="flow-icon">&#128640;</span>
+        <h3>一键部署</h3>
+        <div class="flow-steps">
+          <span>git clone</span><i>→</i><span>子模块初始化</span><i>→</i><span>Docker 构建</span><i>→</i><span>14 容器上线</span>
+        </div>
+        <p>新环境从零到上线仅需一条命令。脚本自动完成子模块拉取、镜像构建、容器编排、配置导入全流程。</p>
+      </div>
+      <div class="flow-card">
+        <span class="flow-icon">&#128260;</span>
+        <h3>增量更新</h3>
+        <div class="flow-steps">
+          <span>代码推送</span><i>→</i><span>检测变更</span><i>→</i><span>增量构建</span><i>→</i><span>滚动重启</span>
+        </div>
+        <p><code>docker-prod.sh update</code> 自动识别变更模块，仅重建受影响的服务镜像，其余容器不受影响。</p>
+      </div>
+    </div>
+
+    <div class="gh-action-note">
+      <span class="gh-icon">&#9889;</span>
+      <p>GitHub Actions 每日自动同步所有子模块到 main 分支，确保各仓库版本一致性。</p>
+    </div>
+  </section>
+
+  <!-- ==================== Section 7: 配置与安全设计 ==================== -->
+  <section id="security" class="section">
+    <h2 class="section-title">配置与安全设计</h2>
+    <p class="section-subtitle">三层配置分离 + 纵深防御 + 最小权限原则</p>
+
+    <div class="config-layers">
+      <div class="config-layer layer-env">
+        <h4>&#128273; 环境变量 (.env)</h4>
+        <p>密码、密钥、第三方 AK — 不进源码、不进镜像</p>
+        <span class="layer-tag">// 8 个密钥自动生成</span>
+      </div>
+      <span class="layer-arrow">&#8595;</span>
+      <div class="config-layer layer-nacos">
+        <h4>&#128194; Nacos 配置中心</h4>
+        <p>业务参数、日志级别、规则阈值 — 动态刷新，无需重启</p>
+        <span class="layer-tag">// 13 个 Data ID 批量导入</span>
+      </div>
+      <span class="layer-arrow">&#8595;</span>
+      <div class="config-layer layer-yml">
+        <h4>&#128295; application.yml</h4>
+        <p>框架配置 — 全部通过 <code>${ENV_VAR:default}</code> 占位符引用</p>
+        <span class="layer-tag">// 零敏感信息硬编码</span>
+      </div>
+    </div>
+
+    <div class="security-grid">
+      <div class="security-item">
+        <h4>&#128274; 端口隔离</h4>
+        <p>生产环境仅 frontend(:80) 和 gateway(:8181) 对外暴露，8 个业务服务端口绑定容器内部网络，外网无法直接访问。</p>
+      </div>
+      <div class="security-item">
+        <h4>&#128273; 密钥分离</h4>
+        <p>admin 后台与 C 端 user 使用独立 JWT 密钥（<code>JWT_SECRET</code> / <code>ADMIN_JWT_SECRET</code>），一方泄露不影响另一方。</p>
+      </div>
+      <div class="security-item">
+        <h4>&#128274; 防误部署</h4>
+        <p>脚本自动检测 <code>CHANGE_ME</code> 占位符，拒绝使用未修改的安全模板部署，强制用户生成真实密钥。</p>
+      </div>
+      <div class="security-item">
+        <h4>&#128187; 最小权限</h4>
+        <p>Docker 容器以非 root 用户（<code>USER app</code>）运行。Nacos 生产环境绑定 127.0.0.1 仅本地访问。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Section 8: 设计亮点总结 ==================== -->
+  <section id="summary" class="section">
+    <h2 class="section-title">设计亮点总结</h2>
+    <p class="section-subtitle">架构设计 7 项 + 工程自动化 5 项</p>
+
+    <div class="summary-columns">
+      <div class="summary-col">
+        <h3 class="col-heading col-arch">&#127959; 架构设计</h3>
+        <ul>
+          <li><span>// 01</span> 四层微服务架构 + 8 服务独立部署</li>
+          <li><span>// 02</span> 7 过滤器链统一网关深度防御</li>
+          <li><span>// 03</span> 策略模式 + 工厂模式双场景复用</li>
+          <li><span>// 04</span> RBAC 五表权限 + 独立鉴权链路</li>
+          <li><span>// 05</span> 乐观锁 + 重试机制防并发超卖</li>
+          <li><span>// 06</span> AOP 切面实现支付/营销幂等性</li>
+          <li><span>// 07</span> RocketMQ 异步消息驱动解耦</li>
+        </ul>
+      </div>
+      <div class="summary-col">
+        <h3 class="col-heading col-ops">&#9881; 工程自动化</h3>
+        <ul>
+          <li><span>// 01</span> Git 子模块独立演进 + 版本精确锁定</li>
+          <li><span>// 02</span> 一键部署脚本 + 智能变更检测增量构建</li>
+          <li><span>// 03</span> 多阶段 Docker 构建 + JVM 参数深度优化</li>
+          <li><span>// 04</span> 8 密钥自动生成 + 三层配置分离</li>
+          <li><span>// 05</span> 健康检查全覆盖 + 依赖链编排</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Section 9: Footer ==================== -->
+  <footer id="footer">
+    <h3>技术栈</h3>
+    <div class="tag-cloud">
+      <span>Java 21</span><span>Spring Boot 3.5</span><span>Spring Cloud 2025</span>
+      <span>Spring Cloud Alibaba</span><span>MyBatis Plus</span><span>Nacos</span>
+      <span>MySQL 8.0</span><span>Redis 7</span><span>RocketMQ</span>
+      <span>Vue 3.5</span><span>Vite 8.0</span><span>TypeScript ~6.0</span>
+      <span>Pinia 3.0</span><span>Element Plus</span><span>ECharts 6.1</span>
+      <span>Docker</span><span>Docker Compose</span><span>GitHub Actions</span>
+      <span>Nginx</span><span>OpenFeign</span><span>Resilience4j</span>
+      <span>JWT</span><span>BCrypt</span><span>Elasticsearch</span>
+    </div>
+    <p class="footer-copy">Shuyran 电商平台 · 独立设计开发 · 2026</p>
+  </footer>
+
+  <script src="./js/design-showcase.js"></script>
+</body>
+</html>
