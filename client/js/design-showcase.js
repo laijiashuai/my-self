@@ -580,7 +580,8 @@ function drawDeployDiagram() {
   function box(x, y, w, h, text, colorIdx, sub) {
     const g = elSVG('g');
     g.appendChild(elSVG('rect', { x, y, width: w, height: h, rx: 8, fill: `url(#dgrad${colorIdx})`, 'fill-opacity': '0.15', stroke: `url(#dgrad${colorIdx})`, 'stroke-opacity': '0.5', 'stroke-width': '1.5' }));
-    g.appendChild(elSVG('text', { x: x + w / 2, y: y + h / 2 - 4, fill: '#e6edf3', 'font-size': '13', 'font-weight': '700', 'font-family': 'var(--font-body), sans-serif', 'text-anchor': 'middle', text }));
+    const textY = sub ? y + h / 2 - 4 : y + h / 2 + 5;
+    g.appendChild(elSVG('text', { x: x + w / 2, y: textY, fill: '#e6edf3', 'font-size': '13', 'font-weight': '700', 'font-family': 'var(--font-body), sans-serif', 'text-anchor': 'middle', text }));
     if (sub) {
       g.appendChild(elSVG('text', { x: x + w / 2, y: y + h / 2 + 18, fill: '#8b949e', 'font-size': '10.5', 'font-family': 'var(--font-mono), monospace', 'text-anchor': 'middle', text: sub }));
     }
@@ -628,7 +629,7 @@ function drawDeployDiagram() {
 
   box(100, 225, 280, 50, 'docker-dev.sh', 3, 'HMR 热更新 · 源码挂载');
   box(540, 225, 320, 50, 'docker-prod.sh', 4, 'Nginx 托管 · 端口隔离 · 资源限制');
-  box(440, 290, 240, 46, '健康检查全覆盖 → 就绪', 2);
+  box(440, 290, 240, 40, '健康检查全覆盖 → 就绪', 2);
 
 
   arrow(380, 250, 540, 250);
