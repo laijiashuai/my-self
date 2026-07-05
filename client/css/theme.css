@@ -375,7 +375,7 @@ img, svg { max-width: 100%; }
   .nav-links.open {
     display: flex; flex-direction: column; position: absolute;
     top: 56px; left: 0; right: 0;
-    background: rgba(18, 24, 32, 0.98); backdrop-filter: blur(16px);
+    background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     padding: 12px 24px; gap: 4px; z-index: 999;
   }

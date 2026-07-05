@@ -628,13 +628,11 @@ function drawDeployDiagram() {
 
   box(100, 225, 280, 50, 'docker-dev.sh', 3, 'HMR 热更新 · 源码挂载');
   box(540, 225, 320, 50, 'docker-prod.sh', 4, 'Nginx 托管 · 端口隔离 · 资源限制');
-  box(440, 295, 220, 36, '健康检查全覆盖 → 就绪', 2);
+  box(440, 290, 240, 46, '健康检查全覆盖 → 就绪', 2);
 
-  svg.appendChild(elSVG('text', { x: 540, y: 260, fill: '#8b949e', 'font-size': '10', 'font-family': 'var(--font-mono), monospace', 'text-anchor': 'middle', text: 'docker compose -f docker-compose-dev.yml up -d' }));
-  svg.appendChild(elSVG('text', { x: 700, y: 260, fill: '#8b949e', 'font-size': '10', 'font-family': 'var(--font-mono), monospace', 'text-anchor': 'middle', text: 'docker compose -f docker-compose-prod.yml up -d' }));
 
   arrow(380, 250, 540, 250);
-  svg.appendChild(elSVG('line', { x1: 550, y1: 275, x2: 550, y2: 295, stroke: '#8b949e', 'stroke-width': '1.5', 'marker-end': 'url(#darrow)' }));
+  svg.appendChild(elSVG('line', { x1: 550, y1: 275, x2: 550, y2: 290, stroke: '#8b949e', 'stroke-width': '1.5', 'marker-end': 'url(#darrow)' }));
 
   container.appendChild(svg);
 }

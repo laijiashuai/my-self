@@ -3,7 +3,7 @@
    ============================================ */
 
 /* ----- 页面背景（比主页 #0d1117 略浅）----- */
-body { background: #121820; }
+body { background: #18212b; }
 
 /* ----- 高亮 ----- */
 .highlight { color: var(--accent-blue); font-weight: 800; }
@@ -11,7 +11,7 @@ body { background: #121820; }
 /* ----- 导航栏 ----- */
 #navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(18, 24, 32, 0.92); backdrop-filter: blur(12px);
+  background: rgba(24, 33, 43, 0.88); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border); transition: transform 0.3s;
 }
 #navbar.nav-hidden { transform: translateY(-100%); }

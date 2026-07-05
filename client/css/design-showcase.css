@@ -132,6 +132,23 @@ img, svg { max-width: 100%; }
   font-family: var(--font-mono);
 }
 
+.hero-cta {
+  display: inline-block; margin-top: 20px;
+  padding: 8px 22px;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  color: var(--accent-green); text-decoration: none;
+  border: 1px solid rgba(63, 185, 80, 0.3); border-radius: 8px;
+  background: rgba(63, 185, 80, 0.04);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+.hero-cta:hover {
+  background: rgba(63, 185, 80, 0.1);
+  border-color: rgba(63, 185, 80, 0.5);
+  transform: translateY(-1px);
+}
+
 /* 滚动指示器 */
 .scroll-indicator {
   position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
