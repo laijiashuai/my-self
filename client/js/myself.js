@@ -1,56 +1,103 @@
-// 证书图片弹窗逻辑
+/* ============================================
+   个人简历 JS — 导航栏 + 滚动动画 + 证书弹窗
+   ============================================ */
 (function () {
-    'use strict';
+  'use strict';
 
-    var lightbox = document.getElementById('lightbox');
-    var lightboxImg = document.getElementById('lightbox-img');
-    var lightboxClose = document.querySelector('.lightbox-close');
-    var certLinks = document.querySelectorAll('.cert-link');
+  // ========== 工具 ==========
+  var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
+  var $$ = function (sel, ctx) { return [].slice.call((ctx || document).querySelectorAll(sel)); };
 
-    // 点击证书链接，打开弹窗
-    certLinks.forEach(function (link) {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            var imgSrc = this.getAttribute('data-img');
-            if (imgSrc) {
-                lightboxImg.src = imgSrc;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+  // ========== 1. 导航栏滚动行为 ==========
+  function initNavbar() {
+    var nav = $('#navbar');
+    if (!nav) return;
+    var lastY = 0, ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var y = window.scrollY;
+          if (y > 100 && y > lastY + 5) nav.classList.add('nav-hidden');
+          else if (y < lastY - 5 || y < 60) nav.classList.remove('nav-hidden');
+          lastY = y; ticking = false;
         });
-    });
+        ticking = true;
+      }
+    }, { passive: true });
 
-    // 点击关闭按钮，关闭弹窗
-    lightboxClose.addEventListener('click', function () {
-        closeLightbox();
+    // 锚点平滑滚动
+    $$('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var target = $(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        var nl = $('.nav-links');
+        var tg = $('.nav-toggle');
+        if (nl) nl.classList.remove('open');
+        if (tg) tg.classList.remove('active');
+      });
     });
+    // 汉堡菜单
+    var toggle = $('.nav-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        var nl = $('.nav-links');
+        toggle.classList.toggle('active');
+        if (nl) nl.classList.toggle('open');
+      });
+    }
+  }
 
-    // 点击弹窗背景，关闭弹窗
-    lightbox.addEventListener('click', function (e) {
-        if (e.target === lightbox) {
-            closeLightbox();
+  // ========== 2. 渐入动画 ==========
+  function initScrollReveal() {
+    var targets = $$('.section, .info-item, .timeline-item, .exp-card, .cert-card, .skill-card, .narrative-card');
+    targets.forEach(function (el) { el.classList.add('fade-up'); });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    targets.forEach(function (el) { obs.observe(el); });
+  }
+
+  // ========== 3. 证书弹窗 Lightbox ==========
+  function initLightbox() {
+    var lightbox = $('#lightbox');
+    var lightboxImg = $('#lightbox-img');
+    var lightboxClose = $('.lightbox-close');
+
+    if (!lightbox || !lightboxImg) return;
+
+    // 点击证书卡片
+    $$('.cert-card[data-img]').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var src = card.getAttribute('data-img');
+        if (src) {
+          lightboxImg.src = src;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
         }
-    });
-
-    // ESC键关闭弹窗
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closeLightbox();
-        }
+      });
     });
 
     function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
     }
-})();
 
-// ========== 工作成果跳转 ==========
-document.querySelectorAll('.work-link').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-        var url = this.getAttribute('data-url') || this.getAttribute('href');
-        if (url) {
-            window.open(url, '_blank', 'noopener,noreferrer');
-        }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
     });
-});
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+
+  // ========== 入口 ==========
+  document.addEventListener('DOMContentLoaded', function () {
+    initNavbar();
+    initScrollReveal();
+    initLightbox();
+  });
+})();

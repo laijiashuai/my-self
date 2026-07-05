@@ -1,220 +1,299 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的简历 - 赖嘉帅</title>
-    <link rel="stylesheet" href="./css/myself.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>赖嘉帅 · 个人简历</title>
+  <link rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/myself.css">
 </head>
-
 <body>
-    <nav class="top-nav">
-        <a href="./index.html" class="btn-back-home" title="返回首页">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-        </a>
-    </nav>
 
-    <div class="header">
-        <div class="avatar-wrapper">
-            <img src="./assets/images/白底证件照.jpg" alt="赖嘉帅" class="avatar">
-        </div>
-        <div class="header-text">
-            <h1>赖嘉帅</h1>
-            <p>研发工程师 · 坐标宜春</p>
-        </div>
+<!-- ==================== 导航栏 ==================== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <span class="nav-brand">Lai Jiashuai</span>
+    <ul class="nav-links">
+      <li><a href="#basic">基本信息</a></li>
+      <li><a href="#experience">经历</a></li>
+      <li><a href="#certificates">证书</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#narrative">详述</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ==================== Hero ==================== -->
+<header id="hero">
+  <div class="hero-bg-code" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="avatar-wrapper">
+      <img src="./assets/images/白底证件照.jpg" alt="赖嘉帅" class="avatar">
+    </div>
+    <h1>赖嘉帅</h1>
+    <p class="hero-subtitle">研发工程师 · 坐标宜春 · 5 年大厂经验</p>
+    <div class="hero-tags">
+      <span>🏢 百度 T5</span><span>💻 全栈开发</span><span>🔬 机器视觉</span><span>📜 软考中级</span>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- ==================== Section 1: 基本信息 ==================== -->
+<section id="basic" class="section">
+  <h2 class="section-title">基本信息</h2>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">姓名</span><span class="value">赖嘉帅</span></div>
+    <div class="info-item"><span class="label">性别</span><span class="value">男</span></div>
+    <div class="info-item"><span class="label">年龄</span><span class="value">29 岁</span></div>
+    <div class="info-item"><span class="label">出生年月</span><span class="value">1996 年 10 月</span></div>
+    <div class="info-item"><span class="label">籍贯</span><span class="value">江西省宜春市</span></div>
+    <div class="info-item"><span class="label">毕业院校</span><span class="value">西安工程大学</span></div>
+    <div class="info-item"><span class="label">学历 / 学位</span><span class="value">本科 · 学士</span></div>
+    <div class="info-item"><span class="label">联系方式</span><span class="value">18823787870</span></div>
+    <div class="info-item"><span class="label">Case</span><span class="value"><a href="./design-showcase.html">Shyran 电商</a></span></div>
+  </div>
+</section>
+
+<!-- ==================== Section 2: 工作经历 + 项目 ==================== -->
+<section id="experience" class="section">
+  <h2 class="section-title">工作经历</h2>
+  <p class="section-subtitle">2019 — 至今</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="time">2019.07 — 2024.02</span>
+      <div class="timeline-body">
+        <span class="company"><strong class="highlight">百度国际科技（深圳）有限公司</strong></span>
+        <span class="role">研发工程师 T5</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="time">2024.03 — 2024.05</span>
+      <div class="timeline-body">
+        <span class="company"><strong class="highlight">行业证书</strong></span>
+        <span class="role">软考中级</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="time">2024.06 — 2024.10</span>
+      <div class="timeline-body">
+        <span class="company">系统学习</span>
+        <span class="role">系统架构设计师</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="time">2024.11 — 2025.03</span>
+      <div class="timeline-body">
+        <span class="company"><strong class="highlight">技能提升</strong></span>
+        <span class="role">初中教资</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="time">2025.04 — 2026.02</span>
+      <div class="timeline-body">
+        <span class="company">考公考编</span>
+        <span class="role">备考</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="time">2026.03 — 至今</span>
+      <div class="timeline-body">
+        <span class="company">独立研发</span>
+        <span class="role">企业级项目</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:var(--section-gap);">项目经验 & 工作成果</h2>
+
+  <div class="exp-grid">
+    <!-- 项目经验 -->
+    <div class="exp-card">
+      <h3>🛠 项目经验</h3>
+      <ul class="exp-list">
+        <li>本科<strong class="highlight">论文</strong>《基于OpenCV的道路检测算法设计与研究》</li>
+        <li><strong class="highlight">近5年软件研发</strong>经验，担任技术方向 leader，研发小组 4~6 人</li>
+        <li><strong class="highlight">3 年以上</strong>数字化应用、信息化项目及大型集成<strong class="highlight">项目管理</strong>经验，担任项目 Owner</li>
+        <li><strong class="highlight">三十万行以上</strong>代码维护及<strong class="highlight">架构优化</strong>经验</li>
+        <li>高精车道级导航、地库停车位导航、红绿灯倒计时预测、<strong class="highlight">智能数字人</strong>语音包</li>
+        <li>基于<strong class="highlight">Vue3/SpringBoot/SpringCloud</strong>搭建的<a href="http://115.29.236.216" target="_blank">电商平台</a></li>
+        <li>建设<a href="./index.html">个人独立站</a>，node.js + 邮件 + 爬虫</li>
+        <li>铝阴极<strong class="highlight">电极片涂层</strong>缺陷检测，基于<strong class="highlight">Halcon</strong>识别 8 类缺陷</li>
+      </ul>
+    </div>
+    <!-- 工作成果 -->
+    <div class="exp-card">
+      <h3>📈 工作成果</h3>
+      <ul class="exp-list">
+        <li><strong class="highlight">专利</strong>《室内导航方法、装置、电子设备及可读存储介质》CN202010617517.0</li>
+        <li>优化编译流程，支持百度地图-导航引擎独立编译，<strong class="highlight">编译效率提升 50%</strong></li>
+        <li>提高<strong class="highlight">路线规划成功率</strong>，从 98% 稳定在 99.9% 以上</li>
+        <li>参与<strong class="highlight">智慧城市</strong>项目，实现车位级、车道级<strong class="highlight">精准导航</strong></li>
+        <li>引擎<strong class="highlight">架构重构</strong>，简单项目平均节约人力成本 1 人天</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 3: 相关证书（图片直显）==================== -->
+<section id="certificates" class="section">
+  <h2 class="section-title">相关证书</h2>
+  <p class="section-subtitle">点击证书可查看大图</p>
+
+  <div class="cert-grid">
+    <div class="cert-card" data-img="./assets/images/电子竞赛.jpg">
+      <div class="cert-img-box">
+        <img src="./assets/images/电子竞赛.jpg" alt="电子竞赛证书" loading="lazy">
+      </div>
+      <div class="cert-info">
+        <span class="cert-date">2018 年 8 月</span>
+        <span class="cert-name">第六届"德州仪器（TI）杯"全国大学生电子设计竞赛</span>
+        <span class="cert-award highlight">省级二等奖</span>
+      </div>
     </div>
 
-    <div class="container">
-        <!-- 基本信息 -->
-        <div class="card info">
-            <h2>📋 基本信息</h2>
-            <div class="info-grid">
-                <div class="info-item"><span class="label">姓名</span><span class="value">赖嘉帅</span></div>
-                <div class="info-item"><span class="label">性别</span><span class="value">男</span></div>
-                <div class="info-item"><span class="label">年龄</span><span class="value">29</span></div>
-                <div class="info-item"><span class="label">出生年月</span><span class="value">1996年10月6日</span></div>
-                <div class="info-item"><span class="label">籍贯</span><span class="value">江西省宜春市</span></div>
-                <div class="info-item"><span class="label">毕业院校</span><span class="value">西安工程大学</span></div>
-                <div class="info-item"><span class="label">学历</span><span class="value">本科</span></div>
-                <div class="info-item"><span class="label">学位</span><span class="value">学士</span></div>
-                <div class="info-item"><span class="label">联系方式</span><span class="value">18823787870</span></div>
-            </div>
-        </div>
-
-        <!-- 相关证书 -->
-        <div class="card cert">
-            <h2>🏆 相关证书</h2>
-            <ul class="cert-list">
-                <li>
-                    <span class="cert-link" data-img="./assets/images/电子竞赛.jpg">
-                        2018年8月 — 第六届"德州仪器（TI）杯"全国大学生电子设计竞赛 · <strong class="highlight">省级二等奖</strong>
-                    </span>
-                </li>
-                <li>
-                    <span class="cert-link" data-img="./assets/images/蓝桥杯.jpg">
-                        2019年5月 — 第十届"蓝桥杯"全国软件和信息技术专业人才大赛（电子类） · <strong class="highlight">国家级优秀奖</strong>
-                    </span>
-                </li>
-                <li>
-                    <span class="cert-link" data-img="./assets/images/软件设计师.png">
-                        2024年5月 — 计算机技术与软件专业技术资格（<strong class="highlight">中级</strong>）· <strong
-                            class="highlight">软件设计师</strong>
-                    </span>
-                </li>
-                <li>
-                    <span class="cert-link">
-                        2026年7月 — 初级中学教师资格证· <strong class="highlight">信息技术</strong>
-                    </span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- 工作经历 -->
-        <div class="card work">
-            <h2>💼 工作经历</h2>
-            <ul class="timeline">
-                <li>
-                    <span class="time">2019年7月至2024年2月</span>
-                    <span class="company"><strong class="highlight">百度国际科技（深圳）有限公司</strong></span>
-                    <span class="role">研发工程师</span>
-                </li>
-                <li>
-                    <span class="time">2024年3月至2024年5月</span>
-                    <span class="company"><strong class="highlight">行业证书</strong></span>
-                    <span class="role">软考中级</span>
-                </li>
-                <li>
-                    <span class="time">2024年6月至2024年10月</span>
-                    <span class="company">系统学习</span>
-                    <span class="role">系统架构设计师</span>
-                </li>
-                <li>
-                    <span class="time">2024年11月至2025年3月</span>
-                    <span class="company"><strong class="highlight">技能提升</strong></span>
-                    <span class="role">初中教资</span>
-                </li>
-                <li>
-                    <span class="time">2025年4月至2026年2月 </span>
-                    <span class="company">考公考编</span>
-                    <span class="role">学习</span>
-                </li>
-                <li>
-                    <span class="time">2026年3月至今</span>
-                    <span class="company">Halcon学习</span>
-                    <span class="role">机器视觉检测</span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- 项目经验 -->
-        <div class="card project">
-            <h2>🛠 项目经验</h2>
-            <ul class="project-list">
-                <li>本科<strong class="highlight">论文</strong>《基于OpenCV的道路检测算法设计与研究》</li>
-                <li><strong class="highlight">4年以上软件研发</strong>经验，担任过技术方向leader，研发小组4~6人</li>
-                <li><strong class="highlight">3年以上数字化应用、信息化项目</strong>及大型集成<strong
-                        class="highlight">项目管理</strong>工作经验，担任过项目Owner</li>
-                <li><strong class="highlight">三十万行以上</strong>量级代码维护经验，及相关<strong
-                        class="highlight">架构优化</strong>经验，具备系统疑难问题排查能力</li>
-                <li>高精车道级导航、地库停车位导航，红绿灯倒计时预测，<strong class="highlight">智能数字人</strong>语音包</li>
-                <li>铝阴极<strong class="highlight">电极片涂层</strong>缺陷检测，基于<strong
-                        class="highlight">Halcon</strong>识别裂缝、气泡、针孔等8类缺陷并标注。</li>
-            </ul>
-        </div>
-
-        <!-- 工作成果 -->
-        <div class="card result">
-            <h2>📈 工作成果</h2>
-            <ul class="result-list">
-                <li>
-                    <strong class="highlight">专利</strong>《室内导航方法、装置、电子设备及可读存储介质》，申请号
-                    <a href="https://pss-system.cponline.cnipa.gov.cn/conventionalSearch" target="_blank"
-                        class="work-link" data-url="https://pss-system.cponline.cnipa.gov.cn/conventionalSearch">
-                        CN202010617517.0
-                    </a>
-                </li>
-                <li>优化编译流程，支持引擎与客户端的独立编译能力，<strong class="highlight">编译效率</strong>提升50%</li>
-                <li>提高<strong class="highlight">路线规划成功率</strong>，从98%稳定在99.9%以上</li>
-                <li>参与<strong class="highlight">智慧城市</strong>项目，实现并优化车位级、车道级的<strong class="highlight">精确导航</strong>功能
-                </li>
-                <li>把控项目进展，确保新版本发布无delay风险</li>
-            </ul>
-        </div>
-
-        <!-- 技能介绍 -->
-        <div class="card skill">
-            <h2>⚡ 技能介绍</h2>
-
-            <div class="skill-block">
-                <h3>编程语言</h3>
-                <p>
-                    熟悉<strong class="highlight">C++</strong>开发，具备性能调优、代码重构经验，熟悉STL库容器实现原理、<strong
-                        class="highlight">C++11</strong>新特性；<br>
-                    熟悉<strong class="highlight">Java</strong>开发，掌握<strong
-                        class="highlight">SpringBoot</strong>框架，理解<strong class="highlight">AOP</strong>核心概念及应用场景；<br>
-                    熟悉哈希、栈、队列、红黑树等<strong class="highlight">数据结构</strong>，快排、堆排等常用<strong
-                        class="highlight">排序算法</strong>；<br>
-                    掌握<strong class="highlight">Python、PHP、JavaScript、HTML</strong>等语言，具备全栈开发能力，借助AI提高研发效率。
-                </p>
-            </div>
-
-            <div class="skill-block">
-                <h3>机器视觉</h3>
-                <p>
-                    熟悉基于<strong class="highlight">OpenCV3</strong>的视觉检测流程与应用；<br>
-                    掌握<strong class="highlight">图像增强、特征提取、形态学处理</strong>等相关算子的应用；<br>
-                    理解<strong class="highlight">傅里叶变换、霍夫变换、分水岭算法、张氏标定法</strong>等原理；<br>
-                    掌握<strong class="highlight">光源、相机</strong>选型相关知识。
-                </p>
-            </div>
-
-            <div class="skill-block">
-                <h3>网络工程</h3>
-                <p>
-                    熟悉<strong class="highlight">TCP/IP</strong>协议栈、OSI模型，熟悉VRRP等路由协议；<br>
-                    熟悉<strong class="highlight">NAT</strong>转换、<strong class="highlight">VPN</strong>技术；<br>
-                    使用<strong class="highlight">Wireshark/Tcpdump</strong>分析网络流量，快速定位三次握手异常、丢包等故障。
-                </p>
-            </div>
-
-            <div class="skill-block">
-                <h3>操作系统</h3>
-                <p>
-                    熟悉<strong class="highlight">多线程</strong>管理，避免死锁，掌握多种<strong class="highlight">进程通讯</strong>方式；<br>
-                    熟练使用命令行操作，使用<strong class="highlight">Shell</strong>（Bash/Zsh）进行系统操作、脚本编写以实现自动化任务；<br>
-                    能够在Linux环境下部署和配置<strong class="highlight">Web</strong>服务器（如Nginx）、<strong
-                        class="highlight">数据库</strong>（MySQL）；<br>
-                    了解docker、k8s的技术特性，云计算虚拟化技术。
-                </p>
-            </div>
-
-            <div class="skill-block">
-                <h3>电子信息</h3>
-                <p>
-                    掌握<strong class="highlight">电路元件</strong>焊接；<br>
-                    熟悉<strong class="highlight">单片机</strong>编程，基于STM32设计的电流信号检测装置。
-                </p>
-            </div>
-        </div>
-
-        <!-- 个人简介 -->
-        <div class="card about">
-            <h2>🌟 个人简介</h2>
-            <p>在全国<strong class="highlight">14个省45个城市</strong>旅行过；学习能力强，抗压；无不良嗜好，心态稳定，生活乐观。</p>
-        </div>
+    <div class="cert-card" data-img="./assets/images/蓝桥杯.jpg">
+      <div class="cert-img-box">
+        <img src="./assets/images/蓝桥杯.jpg" alt="蓝桥杯证书" loading="lazy">
+      </div>
+      <div class="cert-info">
+        <span class="cert-date">2019 年 5 月</span>
+        <span class="cert-name">第十届"蓝桥杯"全国软件和信息技术专业人才大赛（电子类）</span>
+        <span class="cert-award highlight">国家级优秀奖</span>
+      </div>
     </div>
 
-    <!-- 图片弹窗 -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img src="" alt="证书图片" class="lightbox-img" id="lightbox-img">
+    <div class="cert-card" data-img="./assets/images/软件设计师.png">
+      <div class="cert-img-box">
+        <img src="./assets/images/软件设计师.png" alt="软件设计师证书" loading="lazy">
+      </div>
+      <div class="cert-info">
+        <span class="cert-date">2024 年 5 月</span>
+        <span class="cert-name">计算机技术与软件专业技术资格（中级）</span>
+        <span class="cert-award highlight">软件设计师</span>
+      </div>
     </div>
 
-    <script src="./js/myself.js"></script>
+    <div class="cert-card cert-card-text">
+      <div class="cert-info" style="text-align:center;">
+        <span class="cert-date">2026 年 7 月</span>
+        <span class="cert-name">初级中学教师资格证</span>
+        <span class="cert-award highlight">信息技术</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 4: 技能介绍 ==================== -->
+<section id="skills" class="section">
+  <h2 class="section-title">技能介绍</h2>
+
+  <div class="skill-grid">
+    <div class="skill-card">
+      <h3>💻 编程能力</h3>
+      <ul>
+        <li>熟悉<strong class="highlight">C++</strong>，性能调优、代码重构，<strong class="highlight">STL 容器</strong>、<strong class="highlight">C++11</strong> 核心特性</li>
+        <li>掌握<strong class="highlight">Java</strong>，<strong class="highlight">AOP</strong>、分布式架构、MySQL 持久化</li>
+        <li>熟悉<strong class="highlight">ClaudeCode/DeepSeek</strong> 的 <strong class="highlight">VibeCoding</strong> 流程与 skills 设计</li>
+        <li>熟悉哈希、栈、队列、红黑树等<strong class="highlight">数据结构</strong>与常用<strong class="highlight">排序算法</strong></li>
+        <li>了解<strong class="highlight">Python、PHP、JS、HTML</strong>、<strong class="highlight">Vue3</strong>，具备全栈能力</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h3>🔬 机器视觉</h3>
+      <ul>
+        <li>熟悉<strong class="highlight">OpenCV3/Halcon</strong> 视觉检测流程</li>
+        <li>掌握<strong class="highlight">图像增强、特征提取、形态学处理</strong>等算子</li>
+        <li>理解<strong class="highlight">傅里叶变换、霍夫变换</strong>、分水岭算法等原理</li>
+        <li>掌握<strong class="highlight">光源、相机</strong>选型</li>
+        <li>掌握<strong class="highlight">电路焊接</strong>、<strong class="highlight">STM32</strong> 单片机编程</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h3>🖥️ 操作系统</h3>
+      <ul>
+        <li>熟悉<strong class="highlight">进程管理、多线程</strong>，进程间通信与死锁排查</li>
+        <li>熟悉<strong class="highlight">内存管理</strong>，处理泄漏、OOM、峰值优化</li>
+        <li>理解<strong class="highlight">Socket</strong> 与网络 IO 模型（阻塞/非阻塞/多路复用）</li>
+        <li>掌握<strong class="highlight">Shell</strong> 工程化编写，自动化发布脚本</li>
+        <li>了解 <strong class="highlight">docker/podman/k8s</strong> 容器与编排技术</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h3>🌐 网络工程</h3>
+      <ul>
+        <li>熟悉<strong class="highlight">TCP/IP</strong> 协议栈、OSI 模型、VRRP 等路由协议</li>
+        <li>熟悉<strong class="highlight">NAT</strong> 转换、<strong class="highlight">VPN</strong> 技术</li>
+        <li>使用<strong class="highlight">Wireshark/Tcpdump</strong> 分析网络流量，定位异常与丢包</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 5: 履历详述 ==================== -->
+<section id="narrative" class="section">
+  <h2 class="section-title">履历详述</h2>
+
+  <div class="narrative-grid">
+    <div class="narrative-card narrative-intro">
+      <p><strong>"吾日三省吾身"。</strong>其一，技术不可凌驾于业务之上；其二，将安全事故杜绝于摇篮之中；其三，Owner 意识与闭环思维。在大厂接近 5 年的工作经历，踩过很多坑也做出过很多成绩，同时也遇到了个人发展上的瓶颈。作为独生子，父母陪伴与事业发展是避不开的选择题。</p>
+    </div>
+
+    <div class="narrative-card">
+      <h3>大厂的经验</h3>
+      <div class="narrative-phase">
+        <h4>19 — 21 年 · 从大学生到职场人</h4>
+        <p>刚入公司职级 T3，只负责需求评审、接口文档、技术方案与业务实现，然后闭环 bug 保证功能正常。导航业务复杂，涉及代码几十万行且各功能交织，即便是一个简单功能也涉及多方联调，从吃力到熟练花了整整 4 个月。之后工作效率提升，更快设计方案、与各接口人对接，沉淀 wiki。Owner 意识在此时培养起来，获得参与核心项目的机会，团队协作从 4-6 人到二十多人，依旧游刃有余，晋升水到渠成。</p>
+      </div>
+      <div class="narrative-phase">
+        <h4>21 — 22 年 · 从功能实现到技术负责人</h4>
+        <p>职级 T4，不再局限于代码的高质量交付，开始培养新人，评审同事的技术方案与代码 review。地下车库导航是行业内从 0 到 1 的项目，车库没有卫星信号，实现精确导航到指定停车位，全程参与技术方案设计、功能实现、实地测试，协同定位、图像、路线服务等多个团队推进，项目最终符合预期按时上线并申请了相关专利。另外，开始解决前人遗留问题，特别是疑难性能问题，经过优化，驾车页面用户操作不再出现 ANR。</p>
+      </div>
+      <div class="narrative-phase">
+        <h4>22 — 24 年 · 新旧交替，降本增效</h4>
+        <p>职级 T5，负责整个算路模块与中控架构的需求和技术评审。带领手下 2 至 5 人一边承接业务需求，一边优化架构设计。将代码重构融入多个版本的需求迭代中，不占用额外人力却能实现每个简单需求平均 1 人天的人力节约。架构重构包括：C++11 实现 RAII、IO 密集型与计算密集型的线程管理、统一消息机制与数据接口、MVC 框架管理各模块。项目落地后，线上遗留 Crash 迎刃而解，新人接手不易出现低质代码，各模块耦合度降低，接口调用层级被打薄，降低后续研发成本。</p>
+      </div>
+    </div>
+
+    <div class="narrative-card">
+      <h3>两年的学习</h3>
+      <div class="narrative-phase">
+        <h4>系统学习，全栈发展</h4>
+        <p>如果需要我带领团队落地一个完整的可商业化项目，我的架构设计能否满足业务需求？我开始拓宽技术栈：首先以行业证书为目标导向学习架构知识；然后深入企业级前后端开发框架（Vue3/SpringBoot），理解不同的设计思想；最后钻研机器视觉领域，借此打通软硬件的"最后一公里"。2 年的学习让我解决问题的思维更加多元，不再局限于导航业务或 C++，编程语言只是工具，不同场景选择合适的语言和架构设计。</p>
+      </div>
+      <div class="narrative-phase">
+        <h4>公务员与程序员，对立且统一</h4>
+        <p>对于公务员的基本要求包括"贯彻落实"，对于程序员而言，对接的是业务需求，需求来自于上级甚至是 boss。优秀的研发人员，应当具备精准理解需求并贯彻实现出来。遇到阻塞问题及时向上反馈，优先保证项目进展的关键节点。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Footer ==================== -->
+<footer id="footer">
+  <div class="footer-about">
+    <p>在全国 <strong class="highlight">14 个省 45 个城市</strong> 旅行过；学习能力强，抗压；无不良嗜好，心态稳定，生活乐观。</p>
+  </div>
+  <div class="tag-cloud">
+    <span>赖嘉帅</span><span>18823787870</span><span>西安工程大学</span>
+    <span>百度 T5</span><span>全栈工程师</span><span>机器视觉</span>
+  </div>
+  <p class="footer-copy">Made with passion · 2026</p>
+</footer>
+
+<!-- 图片弹窗（保留） -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img src="" alt="证书大图" class="lightbox-img" id="lightbox-img">
+</div>
+
+<script src="./js/myself.js"></script>
 </body>
-
 </html>

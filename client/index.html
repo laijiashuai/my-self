@@ -1,48 +1,307 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>welcome</title>
-    <link rel="stylesheet" href="./css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目简介 — Project Overview</title>
+  <link rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/index.css">
 </head>
-
 <body>
-    <div class="header">
-        <h1>Nice to meet you</h1>
-        <p>欢迎来到我的个人网站</p>
+
+<!-- ==================== 导航栏 ==================== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <span class="nav-brand">MySelf</span>
+    <ul class="nav-links">
+      <li><a href="#showcase">页面展示</a></li>
+      <li><a href="#overview">概览</a></li>
+      <li><a href="#architecture">架构</a></li>
+      <li><a href="#highlights">设计亮点</a></li>
+      <li><a href="#deployment">部署运维</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ==================== Hero ==================== -->
+<header id="hero">
+  <div class="hero-bg-code" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-tag">// Full-Stack Portfolio · Engineered with Precision</p>
+    <h1>Project Overview</h1>
+    <p class="hero-subtitle">个人独立站 · 全栈技术方案 · 系统性成长</p>
+    <p class="hero-desc">6 个页面 · 3 个 PHP API · 1 个 Node 服务 · 7 天研发周期</p>
+  </div>
+  <div class="scroll-indicator">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- ==================== Section 1: 页面展示 ==================== -->
+<section id="showcase" class="section">
+  <h2 class="section-title">页面展示</h2>
+  <p class="section-subtitle">六张页面，各司其职，统一风格</p>
+
+  <div class="flow-cards">
+    <div class="flow-card">
+      <span class="flow-icon">🏠</span>
+      <h3>首页</h3>
+      <p>本页 — 技术架构全景图 + 设计亮点说明</p>
+      <span class="badge">当前页面</span>
+    </div>
+    <div class="flow-card">
+      <span class="flow-icon">📄</span>
+      <h3>个人简历</h3>
+      <p>基本信息 · 工作经历 · 证书展示 · 技能 · 履历详述</p>
+      <a href="./myself.html" class="ds-btn">访问 →</a>
+    </div>
+    <div class="flow-card">
+      <span class="flow-icon">💼</span>
+      <h3>招聘表单</h3>
+      <p>三段式提交 · 手机号查重 · 自动邮件通知</p>
+      <a href="./recruitment.html" class="ds-btn">访问 →</a>
+    </div>
+    <div class="flow-card">
+      <span class="flow-icon">🎬</span>
+      <h3>抖音数据</h3>
+      <p>双账号粉丝/获赞数据展示 · 定时自动更新</p>
+      <a href="./mylife.html" class="ds-btn">访问 →</a>
+    </div>
+    <div class="flow-card">
+      <span class="flow-icon">🏪</span>
+      <h3>电商方案</h3>
+      <p>Shuyran 电商平台 · Spring Cloud 微服务设计方案</p>
+      <a href="./design-showcase.html" class="ds-btn">访问 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 2: 项目概览 ==================== -->
+<section id="overview" class="section">
+  <h2 class="section-title">项目概览</h2>
+  <p class="section-subtitle">个人成长驱动的全栈实践，系统性提升前端研发能力，全程独立完成</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-icon">📄</span>
+      <span class="stat-number" data-target="6">0</span>
+      <span class="stat-label">页面数</span>
+      <span class="stat-desc">纯原生 HTML/CSS/JS</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🔧</span>
+      <span class="stat-number" data-target="3">0</span>
+      <span class="stat-label">PHP API</span>
+      <span class="stat-desc">招聘 · 查重 · 邮件</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🕸️</span>
+      <span class="stat-number" data-target="1">0</span>
+      <span class="stat-label">Node 服务</span>
+      <span class="stat-desc">Puppeteer 爬虫</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🗄️</span>
+      <span class="stat-number" data-target="3">0</span>
+      <span class="stat-label">后端技术</span>
+      <span class="stat-desc">PHP + Node + MySQL</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">⏱️</span>
+      <span class="stat-number" data-target="7">0</span>
+      <span class="stat-label">研发周期</span>
+      <span class="stat-desc">设计 1 天 · 实现 3 天 · 测试 1 天</span>
+    </div>
+  </div>
+
+  <h3 style="text-align:center;margin:48px 0 20px;color:var(--text-secondary);font-size:1rem;">技术栈总览</h3>
+  <div class="tag-cloud" style="margin-bottom:0;">
+    <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+    <span>PHP 8.0</span><span>Node.js 20</span><span>Express 5</span>
+    <span>MySQL 8.0</span><span>Puppeteer</span><span>PHPMailer</span>
+    <span>Nginx</span><span>pm2</span><span>cron</span>
+    <span>Composer</span><span>Git</span>
+  </div>
+</section>
+
+<!-- ==================== Section 2: 技术架构 ==================== -->
+<section id="architecture" class="section">
+  <h2 class="section-title">技术架构</h2>
+  <p class="section-subtitle">前后端分离 · 双后端协同 · 配置驱动</p>
+
+  <div id="arch-main" class="diagram-container"></div>
+
+  <div class="arch-legend" style="margin-bottom:32px;">
+    <span><i style="background:#58a6ff"></i> 客户端</span>
+    <span><i style="background:#a371f7"></i> 代理层</span>
+    <span><i style="background:#3fb950"></i> 后端服务</span>
+    <span><i style="background:#d2991d"></i> 数据与外部</span>
+  </div>
+
+  <h3 style="margin:0 0 24px;color:var(--text-secondary);font-size:1rem;text-align:center;">请求处理流程</h3>
+  <div class="deploy-steps">
+    <div class="deploy-step">
+      <span class="step-num">①</span>
+      <div>
+        <h4>浏览器请求</h4>
+        <p>用户访问页面或调用 API，所有请求统一到达 Nginx。</p>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <span class="step-num">②</span>
+      <div>
+        <h4>Nginx 路由分发</h4>
+        <p>静态文件（<code>client/</code>）直接返回；PHP 请求通过 <code>fastcgi_pass</code> 转发；Node 请求通过 <code>proxy_pass</code> 转发。</p>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <span class="step-num">③</span>
+      <div>
+        <h4>后端处理</h4>
+        <p>PHP 执行 CRUD 操作写入 MySQL；Node 启动 Puppeteer 无头浏览器爬取抖音数据。</p>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <span class="step-num">④</span>
+      <div>
+        <h4>响应返回</h4>
+        <p>JSON 数据返回前端，JavaScript 动态渲染到页面。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 3: 设计亮点 ==================== -->
+<section id="highlights" class="section">
+  <h2 class="section-title">设计亮点</h2>
+  <p class="section-subtitle">六大核心设计决策，兼顾工程规范与开发效率</p>
+
+  <div class="highlights-grid">
+    <!-- 亮点 1 -->
+    <div class="highlight-card">
+      <div class="hl-header">
+        <span class="hl-icon">🏗️</span>
+        <div><h3>前后端分离架构</h3><span class="hl-tag">// decoupled</span></div>
+      </div>
+      <p class="hl-desc">前端纯静态 HTML/CSS/JS，零构建流程、零框架依赖。PHP 和 Node.js 独立部署，Nginx 统一路由分发，低耦合高内聚。</p>
+      <div class="filter-chain" style="margin-bottom:0;">
+        <span>Nginx</span><i>→</i><span>Static</span><i>|</i><span>PHP-FPM</span><i>|</i><span>Express</span>
+      </div>
     </div>
 
-    <div class="container">
-        <!-- 页面一 -->
-        <div class="card myself" id="page1">
-            <div class="card-icon">📄</div>
-            <h2>关于我</h2>
-            <p>我的基本信息和技能介绍</p>
-            <a href="./myself.html" class="btn">查看简历</a>
-        </div>
-
-        <!-- 页面二 -->
-        <div class="card recruitment" id="page2">
-            <div class="card-icon">💼</div>
-            <h2>招聘我</h2>
-            <p>将您的招聘信息发送给我</p>
-            <a href="./recruitment.html" class="btn">联系我</a>
-        </div>
-
-        <!-- 页面三 -->
-        <div class="card mylife" id="page3">
-            <div class="card-icon">🌟</div>
-            <h2>我的生活</h2>
-            <p>这里无法完整的介绍我</p>
-            <a href="./mylife.html" class="btn">去逛逛</a>
-        </div>
+    <!-- 亮点 2 -->
+    <div class="highlight-card">
+      <div class="hl-header">
+        <span class="hl-icon">⚙️</span>
+        <div><h3>分层配置管理</h3><span class="hl-tag">// config-layers</span></div>
+      </div>
+      <p class="hl-desc">四套配置独立管理，杜绝敏感信息硬编码：<code>database.php</code>（MySQL 连接）、<code>.env</code>（SMTP 凭据，不进版本控制）、<code>node_conf.json</code>（监听端口 + Chrome 路径）、<code>accounts.json</code>（爬虫数据落盘）。</p>
+      <div class="hl-tech-tags">
+        <span>database.php</span><span>.env</span><span>node_conf.json</span><span>accounts.json</span>
+      </div>
     </div>
 
-    <div class="bottom-link">
-        <a href="./WebIntroduction.html">📐 查看网站设计方案</a>
+    <!-- 亮点 3 -->
+    <div class="highlight-card">
+      <div class="hl-header">
+        <span class="hl-icon">📋</span>
+        <div><h3>招聘三段式幂等提交</h3><span class="hl-tag">// idempotent-form</span></div>
+      </div>
+      <p class="hl-desc">严格三步顺序执行，保证数据一致性：① 手机号查重 → ② 数据入库（phone UNIQUE 约束） → ③ 邮件通知。步骤 ② 成功才触发步骤 ③，避免无效邮件骚扰。</p>
+      <div id="form-flow-diagram" class="diagram-container" style="height:120px;"></div>
     </div>
+
+    <!-- 亮点 4 -->
+    <div class="highlight-card">
+      <div class="hl-header">
+        <span class="hl-icon">🔄</span>
+        <div><h3>抖音数据双模式</h3><span class="hl-tag">// dual-mode</span></div>
+      </div>
+      <p class="hl-desc"><strong>手动模式</strong>：请求触发 Puppeteer 实时爬取，适合按需查看。<strong>定时模式</strong>：node-cron 每 2 小时自动爬取并落盘为静态 JSON，前端直接读取，零延迟响应。双模式共享 cookie 配置，支持 <code>/api/update-cookie</code> 运行时热更新。</p>
+      <div id="douyin-mode-diagram" class="diagram-container" style="height:160px;"></div>
+    </div>
+
+    <!-- 亮点 5 -->
+    <div class="highlight-card">
+      <div class="hl-header">
+        <span class="hl-icon">🧩</span>
+        <div><h3>ConfigManager IIFE 单例</h3><span class="hl-tag">// singleton-pattern</span></div>
+      </div>
+      <p class="hl-desc">前端唯一的配置加载入口。IIFE 模块模式实现缓存命中直接返回、重复请求自动等待首次完成、强制刷新支持。避免全局变量污染，所有页面通过统一接口获取后端 API 地址。</p>
+      <pre class="hl-code"><code><span class="kw">const</span> ConfigManager = (<span class="kw">function</span>() {
+  <span class="kw">let</span> cachedConfig = <span class="kw">null</span>;
+  <span class="kw">let</span> isLoading = <span class="kw">false</span>;
+  <span class="cm">// 缓存命中 → 直接返回</span>
+  <span class="cm">// 重复请求 → 等待首次完成</span>
+  <span class="cm">// 强制刷新 → force=true</span>
+  <span class="kw">return</span> { loadConfig, getAPIBase, getConfig };
+})();</code></pre>
+    </div>
+
+    <!-- 亮点 6 -->
+    <div class="highlight-card">
+      <div class="hl-header">
+        <span class="hl-icon">📦</span>
+        <div><h3>全栈技术闭环</h3><span class="hl-tag">// full-stack</span></div>
+      </div>
+      <p class="hl-desc">从纯前端页面到 PHP 后端、Node.js 中间层、MySQL 数据库、Nginx 反向代理、pm2 进程守护、cron 定时任务，再到 Composer/npm 包管理和 Git 版本控制，实现了一个完整闭环的全栈工程实践。</p>
+      <div class="hl-tech-tags">
+        <span>HTML/CSS/JS</span><span>PHP 8.0</span><span>Node 20</span>
+        <span>MySQL 8.0</span><span>Nginx</span><span>pm2</span>
+        <span>Puppeteer</span><span>cron</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 5: 部署运维 ==================== -->
+<section id="deployment" class="section">
+  <h2 class="section-title">部署运维</h2>
+  <p class="section-subtitle">pm2 + Nginx + cron，轻量化生产部署方案</p>
+
+  <div class="deploy-steps">
+    <div class="deploy-step">
+      <span class="step-num">①</span>
+      <div>
+        <h4>Nginx 静态托管</h4>
+        <p><code>client/</code> 目录作为 web root，PHP 通过 <code>fastcgi_pass</code> 反向代理，Node 通过 <code>proxy_pass</code> 转发至本地端口。</p>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <span class="step-num">②</span>
+      <div>
+        <h4>pm2 进程守护</h4>
+        <p>Node.js Express 服务由 pm2 管理，支持自动重启、日志轮转和资源监控，保证 7×24 稳定运行。</p>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <span class="step-num">③</span>
+      <div>
+        <h4>cron 定时任务</h4>
+        <p>node-cron 每 2 小时自动触发抖音数据爬取，结果落盘 <code>accounts.json</code>，前端读取零延迟。</p>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <span class="step-num">④</span>
+      <div>
+        <h4>安全措施</h4>
+        <p>SMTP 凭据 <code>.env</code> 不进版本控制；Node 服务仅监听本地回环地址；MySQL phone 字段 UNIQUE 约束防重复提交。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Footer ==================== -->
+<footer id="footer">
+  <h3>项目信息</h3>
+  <div class="tag-cloud">
+    <span>独立完成</span><span>研发周期: 7 天</span><span>需求设计: 1 天</span>
+    <span>技术实现: 3 天</span><span>测试修复: 1 天</span><span>AI 辅助: 文心一言</span>
+  </div>
+  <p class="footer-copy">Built with HTML / CSS / JS · PHP v8.0.30 · Node.js v20.20.2 · MySQL v8.0.46</p>
+</footer>
+
+<script src="./js/index.js"></script>
 </body>
-
 </html>

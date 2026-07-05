@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的抖音主页</title>
-    <link rel="stylesheet" href="./css/mylife.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的抖音</title>
+  <link rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/mylife.css">
 </head>
-
 <body>
-    <nav class="top-nav">
-        <a href="./index.html" class="btn-back-home" title="返回首页">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-        </a>
-    </nav>
-    <div class="header">
-        <h1>我的抖音</h1>
-        <p>两个账号，记录不同的生活</p>
+
+<!-- 返回导航 -->
+<nav class="top-nav">
+  <a href="./index.html" class="btn-back-home" title="返回首页">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    返回首页
+  </a>
+</nav>
+
+<!-- Hero -->
+<header class="mini-hero">
+  <h1>我的抖音</h1>
+  <p>两个账号，记录不同的生活</p>
+</header>
+
+<!-- 抖音数据卡片 -->
+<section class="section">
+  <div class="douyin-grid">
+    <div class="douyin-card card">
+      <span class="card-emoji">🎬</span>
+      <h2>日常的枸杞</h2>
+      <p>分享生活中的小灵感，用短视频记录每一天的有趣瞬间。</p>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num fans-count">--</span>
+          <span class="stat-label">粉丝</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num likes-count">--</span>
+          <span class="stat-label">获赞</span>
+        </div>
+      </div>
+      <a class="btn" href="https://www.douyin.com/user/MS4wLjABAAAAYLVzofvsSh9Whf4VPeVXU6HB8oG1vW1hnCk7z1lJbyM" target="_blank" rel="noopener">打开抖音主页</a>
     </div>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-icon">🎬</div>
-            <h2>账号一：日常的枸杞</h2>
-            <p>分享生活中的小灵感，用短视频记录每一天的有趣瞬间。</p>
-            <p class="meta">粉丝：<span class="fans-count">--</span> ｜ 获赞：<span class="likes-count">--</span></p>
-            <a class="btn" href="https://www.douyin.com/user/MS4wLjABAAAAYLVzofvsSh9Whf4VPeVXU6HB8oG1vW1hnCk7z1lJbyM"
-                target="_blank" rel="noopener">
-                打开抖音主页
-            </a>
+    <div class="douyin-card card">
+      <span class="card-emoji">🎵</span>
+      <h2>远方的诗歌</h2>
+      <p>用旅行治愈生活，在流浪的日子里寻找自我。</p>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num fans-count">--</span>
+          <span class="stat-label">粉丝</span>
         </div>
-
-        <div class="card">
-            <div class="card-icon">🎵</div>
-            <h2>账号二：远方的诗歌</h2>
-            <p>用旅行治愈生活，在流浪的日子里寻找自我。</p>
-            <p class="meta">粉丝：<span class="fans-count">--</span> ｜ 获赞：<span class="likes-count">--</span></p>
-            <a class="btn"
-                href="https://www.douyin.com/user/MS4wLjABAAAA73ORY7cD2_bw5dkwqXFxtQxbY7fuAdoYS1Palc8yX_Sh7zpJcKJ8wY904uqc0eoL"
-                target="_blank" rel="noopener">
-                打开抖音主页
-            </a>
+        <div class="stat">
+          <span class="stat-num likes-count">--</span>
+          <span class="stat-label">获赞</span>
         </div>
+      </div>
+      <a class="btn" href="https://www.douyin.com/user/MS4wLjABAAAA73ORY7cD2_bw5dkwqXFxtQxbY7fuAdoYS1Palc8yX_Sh7zpJcKJ8wY904uqc0eoL" target="_blank" rel="noopener">打开抖音主页</a>
     </div>
-    <script src="./js/config.js"></script>
-    <script src="./js/mylife.js"></script>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+  <p class="footer-copy">数据由 Puppeteer 自动爬取 · 每 2 小时更新</p>
+</footer>
+
+<script src="./js/config.js"></script>
+<script src="./js/mylife.js"></script>
 </body>
-
 </html>

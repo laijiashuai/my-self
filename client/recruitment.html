@@ -1,92 +1,105 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>招聘信息</title>
-    <link rel="stylesheet" href="./css/recruitment.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>招聘信息</title>
+  <link rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/recruitment.css">
 </head>
-
 <body>
-    <nav class="top-nav">
-        <a href="./index.html" class="btn-back-home" title="返回首页">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-        </a>
-    </nav>
-    <div class="container">
-        <h2>招聘信息</h2>
-        <form id="recruitForm">
-            <div class="form-group">
-                <label>公司名</label>
-                <div class="input-wrapper">
-                    <input type="text" name="company_name" required>
-                    <span class="required-star">*</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>联系人</label>
-                <div class="input-wrapper">
-                    <input type="text" name="contact_person" required>
-                    <span class="required-star">*</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>电话</label>
-                <div class="input-wrapper">
-                    <input type="tel" name="phone" required placeholder="如：13800138000 / 400-000-0000">
-                    <span class="required-star">*</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>岗位</label>
-                <div class="input-wrapper">
-                    <input type="text" name="position" required>
-                    <span class="required-star">*</span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group half">
-                    <label>最低薪资（元）</label>
-                    <div class="input-wrapper">
-                        <input type="number" name="min_salary" required min="0" step="100">
-                        <span class="required-star">*</span>
-                    </div>
-                </div>
-                <div class="form-group half">
-                    <label>最高薪资（元）</label>
-                    <div class="input-wrapper">
-                        <input type="number" name="max_salary" required min="0" step="100">
-                        <span class="required-star">*</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>邮箱</label>
-                <div class="input-wrapper">
-                    <input type="text" name="email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>岗位职责</label>
-                <textarea name="job_responsibilities" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label>任职要求</label>
-                <textarea name="job_requirements" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label>介绍</label>
-                <textarea name="description" rows="3"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">提交</button>
-        </form>
-        <div id="message" class="message"></div>
-    </div>
-    <script src="js/recruitment.js"></script>
-</body>
 
+<nav class="top-nav">
+  <a href="./index.html" class="btn-back-home" title="返回首页">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    返回首页
+  </a>
+</nav>
+
+<header class="mini-hero">
+  <h1>招聘信息</h1>
+  <p>将您的招聘需求发送给我，我会尽快与您联系</p>
+</header>
+
+<form id="recruitForm">
+  <!-- ===== 关键信息卡片 ===== -->
+  <section class="section">
+    <div class="form-card form-card-primary">
+      <h2>关键信息 <span class="required-star">*</span></h2>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>公司名</label>
+          <input type="text" name="company_name" required placeholder="请输入公司名称">
+        </div>
+        <div class="form-group half">
+          <label>招聘岗位</label>
+          <input type="text" name="position" required placeholder="如：前端开发工程师">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>联系人</label>
+          <input type="text" name="contact_person" required placeholder="您的姓名">
+        </div>
+        <div class="form-group half">
+          <label>联系电话</label>
+          <input type="tel" name="phone" required placeholder="如：13800138000">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>最低薪资（K）</label>
+          <input type="number" name="min_salary" required min="0" step="1" placeholder="如：15">
+        </div>
+        <div class="form-group half">
+          <label>最高薪资（K）</label>
+          <input type="number" name="max_salary" required min="0" step="1" placeholder="如：25">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 详细信息卡片 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="form-card form-card-secondary">
+      <h2>详细信息 <span class="optional-tag">选填</span></h2>
+
+      <div class="form-group">
+        <label>联系邮箱</label>
+        <input type="text" name="email" placeholder="方便我回复您">
+      </div>
+
+      <div class="form-group">
+        <label>岗位职责</label>
+        <textarea name="job_responsibilities" rows="3" placeholder="描述该岗位的主要工作内容"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>任职要求</label>
+        <textarea name="job_requirements" rows="3" placeholder="学历、经验、技能等要求"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>公司介绍</label>
+        <textarea name="description" rows="3" placeholder="公司规模、业务方向等"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">提交招聘信息</button>
+      <div id="message" class="message"></div>
+    </div>
+  </section>
+</form>
+
+<footer id="footer">
+  <p class="footer-copy">信息加密传输 · 安全存储在 MySQL 数据库中</p>
+</footer>
+
+<script src="js/recruitment.js"></script>
+</body>
 </html>
