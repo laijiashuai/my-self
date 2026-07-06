@@ -151,18 +151,33 @@ img, svg { max-width: 100%; }
 
 /* 滚动指示器 */
 .scroll-indicator {
-  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
 }
-.scroll-indicator span {
-  display: block; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--text-muted); animation: scroll-bounce 1.5s infinite;
+.scroll-text {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  color: rgba(63, 185, 80, 0.5);
+  writing-mode: vertical-rl;
 }
-.scroll-indicator span:nth-child(2) { animation-delay: 0.15s; }
-.scroll-indicator span:nth-child(3) { animation-delay: 0.3s; }
-@keyframes scroll-bounce {
-  0%, 100% { opacity: 0.2; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(4px); }
+.scroll-text i {
+  font-style: normal; display: inline-block;
+  animation: scroll-char 2.4s ease-in-out infinite;
+}
+.scroll-text i:nth-child(1) { animation-delay: 0s; }
+.scroll-text i:nth-child(2) { animation-delay: 0.15s; }
+.scroll-text i:nth-child(3) { animation-delay: 0.3s; }
+.scroll-text i:nth-child(4) { animation-delay: 0.45s; }
+.scroll-arrow {
+  display: block; width: 20px; height: 20px;
+  border-right: 2px solid rgba(63, 185, 80, 0.5);
+  border-bottom: 2px solid rgba(63, 185, 80, 0.5);
+  transform: rotate(45deg);
+  animation: scroll-char 2.4s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+@keyframes scroll-char {
+  0%, 100% { opacity: 0.2; }
+  30%, 60% { opacity: 1; }
 }
 
 /* ==================== 数据统计卡片 ==================== */
